@@ -2658,6 +2658,121 @@ button:disabled,
   opacity: 0.25;
 }
 
+.harmonized-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #000000;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(1.135);
+
+}
+
+/* Featured Section Container */
+.featured-section {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out child elements evenly */
+  align-items: center; /* Vertically center child elements */
+  padding: 2px 0px; /* Top and bottom padding (adjust as needed) */
+  margin-bottom: 0px; /* Space below the section (adjust as needed) */
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+  width: 100%; /* Full width of the container */
+  background-color: transparent; /* Background color (default: transparent) */
+  border: 1px solid transparent; /* Border (default: none) */
+  border-radius: 0px; /* Border radius (default: none) */
+  box-shadow: none; /* Box shadow (default: none) */
+  overflow: hidden; /* Hide overflowing content (default: visible) */
+}
+
+/* Featured Title */
+.featured-title {
+  margin-right: 20px; /* Right margin to create space between title and gallery */
+  font-size: 14px; /* Font size of the title */
+  color: #ffffff; /* Text color of the title */
+  margin: 0; /* Remove default margin */
+  line-height: normal; /* Line height (default: normal) */
+  text-align: left; /* Text alignment (default: left) */
+  white-space: nowrap; /* Prevent text from wrapping (default: nowrap) */
+  margin-bottom: 0px;
+}
+
+/* View All Button */
+.view-all-button {
+  background-color: #0066d3; /* Background color (default: blue) */
+  color: rgb(255, 255, 255)!important; /* Text color (default: white) */
+  border: none; /* Remove border (default: none) */
+  border-radius: 5px; /* Rounded corners (default: 5px) */
+  font-size: 12px; /* Font size (default: 10px) */
+  cursor: pointer; /* Pointer cursor on hover */
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  padding: 5px 40px; /* Padding inside the button (default: 10px 20px) */
+  transition: background-color 0.2s ease-in-out; /* Smooth background color transition */
+  text-decoration: none; /* Remove underline (default: none) */
+  text-transform: none; /* Text transformation (default: none) */
+  box-shadow: none; /* Box shadow (default: none) */
+  outline: none; /* Remove outline on focus (default: none) */
+  opacity: 1; /* Opacity (default: fully visible) */
+  width: auto; /* Width (default: auto) */
+  height: auto; /* Height (default: auto) */
+  max-height: 50px;
+  height: 40px;
+  min-width: 100px; /* Minimum width (default: 100px) */
+  min-height: 10px; /* Minimum height (default: 40px) */
+}
+
+/* Hover Effect for View All Button */
+.view-all-button:hover {
+  background-color: #b30000; /* Darker blue on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+  transform: scale(0.98); /* Slightly scale up on hover */
+}
+
+/* Active State for View All Button */
+.view-all-button:active {
+  background-color: #004080; /* Even darker blue when clicked */
+  color: white;
+  transform: scale(0.95); /* Slightly scale down when clicked */
+}
+
+/* Focus State for View All Button */
+.view-all-button:focus {
+  outline: 2px solid #007BFF; /* Add outline on focus */
+  outline-offset: 2px; /* Space between outline and button */
+}
+
+/* Disabled State for View All Button */
+.view-all-button:disabled {
+  background-color: #ffffff; /* Gray background when disabled */
+  color: #ffffff; /* Gray text when disabled */
+  cursor: not-allowed; /* Not-allowed cursor when disabled */
+  opacity: 1; /* Reduce opacity when disabled */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .featured-section {
+      flex-direction: row; /* Stack children vertically on small screens */
+      text-align: center; /* Center-align text */
+      padding: 10px 0px; /* Adjust padding for mobile */
+      margin-bottom: 10px; /* Add more space below the section */
+  }
+
+  .featured-title {
+      margin-right: 0; /* Remove right margin on mobile */
+      margin-bottom: 10px; /* Add space below the title */
+      font-size: 14px; /* Increase font size for better readability */
+  }
+
+  .view-all-button {
+      width: 50%; /* Full width button on smaller screens */
+      margin-top: 10px; /* Add space above the button */
+      font-size: 12px; /* Increase font size for better readability */
+      padding: 12px 24px; /* Increase padding for better touch targets */
+  }
+}
+
 /* Tiles */
 
 .tiles {
@@ -2670,7 +2785,11 @@ button:disabled,
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   position: relative;
-  margin: -2.5em 0 0 -2.5em;
+  margin: 0 auto;
+  padding: 5px;
+  
+  
+
 }
 
 .tiles article {
@@ -2915,15 +3034,21 @@ body.is-touch .tiles article .content {
   }
 }
 
-/* Header */
-
+/* Sticky Header */
 #header {
-  display: flex; /* Enables Flexbox */
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
-  flex-direction: column; /* Ensures elements stack properly */
-  text-align: center; /* Centers text elements */
-  padding: 4em 0 0.5em 0; /* Keep existing padding */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 1em 0;
 }
 
 #header .logo {
@@ -2957,20 +3082,14 @@ body.is-touch .tiles article .content {
 }
 
 #header nav {
-  position: fixed;
+  position: absolute;
   right: 1em;
   top: 1em;
   z-index: 10000;
 }
 
 #header nav ul {
-  display: -moz-flex;
-  display: -webkit-flex;
-  display: -ms-flex;
   display: flex;
-  -moz-align-items: center;
-  -webkit-align-items: center;
-  -ms-align-items: center;
   align-items: center;
   list-style: none;
   margin: 0;
@@ -2988,7 +3107,7 @@ body.is-touch .tiles article .content {
   height: 3em;
   line-height: 3em;
   padding: 0 1.5em;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   border: 0;
   font-size: 0.8em;
@@ -3009,9 +3128,6 @@ body.is-touch .tiles article .content {
 
 #header nav ul li a[href="#menu"]:before,
 #header nav ul li a[href="#menu"]:after {
-  -moz-transition: opacity 0.2s ease;
-  -webkit-transition: opacity 0.2s ease;
-  -ms-transition: opacity 0.2s ease;
   transition: opacity 0.2s ease;
   content: "";
   display: block;
@@ -3043,9 +3159,19 @@ body.is-touch .tiles article .content {
   opacity: 0;
 }
 
+/* Adjust body padding to prevent content overlap */
+body {
+  padding-top: 120px;
+}
+
+/* Media Queries */
 @media screen and (max-width: 736px) {
   #header {
-    padding: 2.5em 0 0.1em 0;
+    padding: 1em 0;
+  }
+
+  body {
+    padding-top: 80px;
   }
 
   #header nav {
@@ -3677,111 +3803,5 @@ body {
   height: 2px; /* Thickness of the divider */
   background-color: #000000; /* Color of the divider */
   width: 100%; /* Width of the divider */
-  margin: 20px 0; /* Space above and below the divider */
-}
-
-
-
-/* Featured Section Container */
-.featured-section {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space out child elements evenly */
-    align-items: center; /* Vertically center child elements */
-    padding: 2px 0px; /* Top and bottom padding (adjust as needed) */
-    margin-bottom: 0px; /* Space below the section (adjust as needed) */
-    box-sizing: border-box; /* Include padding and border in element's total width/height */
-    width: 100%; /* Full width of the container */
-    background-color: transparent; /* Background color (default: transparent) */
-    border: 1px solid transparent; /* Border (default: none) */
-    border-radius: 0px; /* Border radius (default: none) */
-    box-shadow: none; /* Box shadow (default: none) */
-    overflow: hidden; /* Hide overflowing content (default: visible) */
-}
-
-/* Featured Title */
-.featured-title {
-    margin-right: 20px; /* Right margin to create space between title and gallery */
-    font-size: 16px; /* Font size of the title */
-    color: #333; /* Text color of the title */
-    margin: 0; /* Remove default margin */
-    line-height: normal; /* Line height (default: normal) */
-    text-align: left; /* Text alignment (default: left) */
-    white-space: nowrap; /* Prevent text from wrapping (default: nowrap) */
-}
-
-/* View All Button */
-.view-all-button {
-    background-color: #007BFF; /* Background color (default: blue) */
-    color: white; /* Text color (default: white) */
-    border: none; /* Remove border (default: none) */
-    border-radius: 5px; /* Rounded corners (default: 5px) */
-    font-size: 16px; /* Font size (default: 10px) */
-    cursor: pointer; /* Pointer cursor on hover */
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    padding: 10px 20px; /* Padding inside the button (default: 10px 20px) */
-    transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
-    text-decoration: none; /* Remove underline (default: none) */
-    text-transform: none; /* Text transformation (default: none) */
-    
-    
-    box-shadow: none; /* Box shadow (default: none) */
-    outline: none; /* Remove outline on focus (default: none) */
-    opacity: 1; /* Opacity (default: fully visible) */
-    width: auto; /* Width (default: auto) */
-    height: auto; /* Height (default: auto) */
-	max-height: 50px;
-    min-width: 100px; /* Minimum width (default: 100px) */
-    min-height: 10px; /* Minimum height (default: 40px) */
-}
-
-/* Hover Effect for View All Button */
-.view-all-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-    transform: scale(1.05); /* Slightly scale up on hover */
-}
-
-/* Active State for View All Button */
-.view-all-button:active {
-    background-color: #004080; /* Even darker blue when clicked */
-    transform: scale(0.95); /* Slightly scale down when clicked */
-}
-
-/* Focus State for View All Button */
-.view-all-button:focus {
-    outline: 2px solid #007BFF; /* Add outline on focus */
-    outline-offset: 2px; /* Space between outline and button */
-}
-
-/* Disabled State for View All Button */
-.view-all-button:disabled {
-    background-color: #cccccc; /* Gray background when disabled */
-    color: #666666; /* Gray text when disabled */
-    cursor: not-allowed; /* Not-allowed cursor when disabled */
-    opacity: 0.7; /* Reduce opacity when disabled */
-}
-
-/* Media Query for Mobile Devices */
-@media (max-width: 768px) {
-    .featured-section {
-        flex-direction: row; /* Stack children vertically on small screens */
-        text-align: center; /* Center-align text */
-        padding: 10px 0px; /* Adjust padding for mobile */
-        margin-bottom: 10px; /* Add more space below the section */
-    }
-
-    .featured-title {
-        margin-right: 0; /* Remove right margin on mobile */
-        margin-bottom: 10px; /* Add space below the title */
-        font-size: 14px; /* Increase font size for better readability */
-    }
-
-    .view-all-button {
-        width: 50%; /* Full width button on smaller screens */
-        margin-top: 10px; /* Add space above the button */
-        font-size: 12px; /* Increase font size for better readability */
-        padding: 12px 24px; /* Increase padding for better touch targets */
-    }
+  margin: 80px 0; /* Space above and below the divider */
 }
