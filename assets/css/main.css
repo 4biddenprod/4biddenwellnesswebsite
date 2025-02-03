@@ -3029,8 +3029,8 @@ body.is-touch .tiles article .content {
   }
 
   .tiles article {
-    width: 100%;
-    margin: 1.25em 0 0 0;
+    width: calc(50% - 1.25em); /* Change width to 50% instead of 100% */
+    margin: 1.25em 0 0 1.25em;
   }
 }
 
@@ -3548,6 +3548,17 @@ body.is-menu-visible #menu .close {
   padding: 0;
   box-sizing: border-box;
 }
+/* Slider Container - Ensures Responsiveness */
+.cslider-container {
+  max-width: 1200px; /* Prevents the slider from being too wide */
+  margin: auto; /* Centers the slider */
+  position: relative;
+  overflow: hidden; /* Prevents overflow issues */
+  padding: 30px;
+  background: #f7f7f7; /* Background color */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 /* Applies styles to all .inner elements within #wrapper except for those within #cslider */
 #wrapper > * > .inner:not(#cslider) {
   width: 100%;
@@ -3638,6 +3649,7 @@ body {
 
 .cslider-slider-container {
   position: relative;
+  margin: 0 auto;
   width: 100vw;
   overflow: hidden;
   width: fit-content;
