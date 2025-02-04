@@ -2665,6 +2665,7 @@ button:disabled,
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transform: scale(1.135);
+  
 
 }
 
@@ -2699,6 +2700,7 @@ button:disabled,
 /* View All Button */
 .view-all-button {
   background-color: #0066d3; /* Background color (default: blue) */
+  flex-shrink: 0;
   color: rgb(255, 255, 255)!important; /* Text color (default: white) */
   border: none; /* Remove border (default: none) */
   border-radius: 5px; /* Rounded corners (default: 5px) */
@@ -2707,7 +2709,7 @@ button:disabled,
   display: flex; /* Use flexbox for layout */
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
-  padding: 5px 40px; /* Padding inside the button (default: 10px 20px) */
+  padding: 10px 20px; /* Padding inside the button (default: 10px 20px) */
   transition: background-color 0.2s ease-in-out; /* Smooth background color transition */
   text-decoration: none; /* Remove underline (default: none) */
   text-transform: none; /* Text transformation (default: none) */
@@ -2753,23 +2755,23 @@ button:disabled,
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
   .featured-section {
-      flex-direction: row; /* Stack children vertically on small screens */
+      flex-direction: column-reverse; /* Stack children vertically on small screens */
       text-align: center; /* Center-align text */
-      padding: 10px 0px; /* Adjust padding for mobile */
-      margin-bottom: 10px; /* Add more space below the section */
+      padding: auto; /* Adjust padding for mobile */
+      margin-bottom: 0px; /* Add more space below the section */
   }
 
   .featured-title {
-      margin-right: 0; /* Remove right margin on mobile */
-      margin-bottom: 10px; /* Add space below the title */
-      font-size: 14px; /* Increase font size for better readability */
+    
+      margin: 0;
+      margin-bottom: 0px;
+      font-size: 12px; /* Increase font size for better readability */
   }
 
   .view-all-button {
-      width: 50%; /* Full width button on smaller screens */
-      margin-top: 10px; /* Add space above the button */
-      font-size: 12px; /* Increase font size for better readability */
-      padding: 12px 24px; /* Increase padding for better touch targets */
+      width: 60%; /* Full width button on smaller screens */
+      margin-bottom: 0px;
+      text-align: center;
   }
 }
 
@@ -3548,17 +3550,7 @@ body.is-menu-visible #menu .close {
   padding: 0;
   box-sizing: border-box;
 }
-/* Slider Container - Ensures Responsiveness */
-.cslider-container {
-  max-width: 1200px; /* Prevents the slider from being too wide */
-  margin: auto; /* Centers the slider */
-  position: relative;
-  overflow: hidden; /* Prevents overflow issues */
-  padding: 30px;
-  background: #f7f7f7; /* Background color */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+
 /* Applies styles to all .inner elements within #wrapper except for those within #cslider */
 #wrapper > * > .inner:not(#cslider) {
   width: 100%;
@@ -3636,6 +3628,18 @@ body {
   opacity: 1;
   background-color: #555;
 }
+/* Slider Container - Ensures Responsiveness */
+.cslider-container {
+  max-width: 1200px; /* Prevents the slider from being too wide */
+  margin: auto; /* Centers the slider */
+  position: relative;
+  overflow: hidden; /* Prevents overflow issues */
+  padding: 0px;
+  background: #000000; /* Background color */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+}
 
 /* Wrapper and container styles */
 #cslider-wrapper {
@@ -3674,8 +3678,8 @@ body {
 }
 
 .cslider-slide {
-  flex: 0 0 calc(100% / 3.5); /* Default: 3 images visible */
-  max-width: calc(100% / 3.5);
+  flex: 0 0 calc(100% / 3.2); /* Default: 3 images visible */
+  max-width: calc(100% / 3.2);
   position: relative;
   margin-right: 10px; /* Adds spacing between the slides */
   scroll-snap-align: start; /* Aligns slides when scrolled */
@@ -3800,14 +3804,15 @@ body {
 
 @media (max-width: 768px) {
   .cslider-slide {
-    flex: 0 0 calc(100% / 1.5); /* 2 slides visible */
-    max-width: 70%;
+    flex: 0 0 calc(100% / 1.05); /* 2 slides visible */
+    max-width: 90%;
   }
 }
 @media (min-width: 769px) and (max-width: 1023px) {
   .cslider-slide {
-    flex: 0 0 calc(100% / 2.5); /* 2.5 slides visible */
-    max-width: 80%;
+    flex: 0 0 calc(100% / 2.1); /* 2.5 slides visible */
+    max-width: 70%;
+    
   }
   
 }
@@ -3817,3 +3822,80 @@ body {
   width: 100%; /* Width of the divider */
   margin: 80px 0; /* Space above and below the divider */
 }
+
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full-screen container */
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/* Left Side: Button Container */
+.button-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+/* Modern Button Styling */
+.view-all-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-button:hover {
+  background-color: #d40a0a;
+}
+
+/* Right Side: Image Grid */
+.grid-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+/* Ensure images scale perfectly */
+.grid-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevent cropping or distortion */
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .button-container {
+    height: 100px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    grid-template-rows: repeat(12, 1fr); /* Adjust rows for 24 images */
+  }
+}
+
