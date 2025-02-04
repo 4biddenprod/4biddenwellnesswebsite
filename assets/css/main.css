@@ -2679,8 +2679,9 @@ button:disabled,
 /* Featured Section */
 .featured-section {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   padding: 2px 0px;
   margin-bottom: 20px;
   width: 100%;
@@ -2751,11 +2752,11 @@ button:disabled,
   .featured-title {
     margin: 0;
     margin-bottom: 0px;
-    font-size: 12px;
+    font-size: 8px;
   }
 
   .view-all-button {
-    width: 60%;
+    width: 100%;
     margin-bottom: 0px;
     text-align: center;
   }
