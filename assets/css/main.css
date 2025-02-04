@@ -3469,6 +3469,7 @@ body.is-menu-visible #menu .close {
   box-sizing: border-box;
 }
 
+
 /* Applies styles to all .inner elements within #wrapper except for those within #cslider */
 #wrapper > * > .inner:not(#cslider) {
   width: 100%;
@@ -3598,6 +3599,8 @@ body {
 .cslider-slide {
   flex: 0 0 calc(100% / 3.2); /* Default: 3 images visible */
   max-width: calc(100% / 3.2);
+  flex: 0 0 calc(100% / 3.2); /* Default: 3 images visible */
+  max-width: calc(100% / 3.2);
   position: relative;
   margin-right: 10px; /* Adds spacing between the slides */
   scroll-snap-align: start; /* Aligns slides when scrolled */
@@ -3623,7 +3626,7 @@ body {
   background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
   color: white;
   border-radius: 10px;
-  
+
   font-weight: bold;
   opacity: 0; /* Initially hidden */
   transition: all 0.3s ease; /* Smooth fade-in effect */
@@ -3657,49 +3660,48 @@ body {
 
 /* Navigation Arrows */
 .cslider-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
-    z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
 .cslider-arrow {
-    background-color: white; /* Maintain the same color */
-    border: 1px solid #bbb; /* Subtle border */
-    color: #555; /* Icon/text color */
-    font-size: 15px; /* Font size for text, if any */
-    width: 30px; /* Button width */
-    height: 30px; /* Button height */
-    border-radius: 20px; /* Rounded corners for a modern look */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease; /* Smooth transition for all animated properties */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: white; /* Maintain the same color */
+  border: 1px solid #bbb; /* Subtle border */
+  color: #555; /* Icon/text color */
+  font-size: 15px; /* Font size for text, if any */
+  width: 30px; /* Button width */
+  height: 30px; /* Button height */
+  border-radius: 20px; /* Rounded corners for a modern look */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease; /* Smooth transition for all animated properties */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 .cslider-arrow:hover {
-    background-color: #f9f9f9; /* Lighter background on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+  background-color: #f9f9f9; /* Lighter background on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
 }
 
 .cslider-arrow.disabled {
-    opacity: 0.2; /* Dim button when disabled */
-    pointer-events: none; /* Disable interaction when button is disabled */
+  opacity: 0.2; /* Dim button when disabled */
+  pointer-events: none; /* Disable interaction when button is disabled */
 }
 
 .cslider-arrow img {
-    width: 25px; /* Full width of the button */
-    height: 25px; /* Full height of the button */
-	padding-left:20%;
-	padding-right:20%;
+  width: 25px; /* Full width of the button */
+  height: 25px; /* Full height of the button */
+  padding-left: 20%;
+  padding-right: 20%;
 }
-
 
 /* Progress Bar */
 .cslider-progress-container {
@@ -3724,6 +3726,8 @@ body {
   .cslider-slide {
     flex: 0 0 calc(100% / 1.05); /* 2 slides visible */
     max-width: 90%;
+    flex: 0 0 calc(100% / 1.05); /* 2 slides visible */
+    max-width: 90%;
   }
 }
 @media (min-width: 769px) and (max-width: 1023px) {
@@ -3732,7 +3736,6 @@ body {
     max-width: 70%;
     
   }
-  
 }
 .divider {
   height: 2px; /* Thickness of the divider */
