@@ -183,6 +183,7 @@
 			});
 
 })(jQuery);
+
 const slider = document.getElementById('cslider-slider');
 const progressBar = document.getElementById('progress-bar');
 const prevButton = document.getElementById('prev-slide');

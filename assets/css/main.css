@@ -3472,49 +3472,6 @@ body.is-menu-visible #menu .close {
   }
 }
 
-/* Wrapper - Adjusting the .inner styles to exclude .slideshow-container */
-#wrapper > * > .inner:not(.slideshow-container) {
-  width: 100%;
-  max-width: 72em;
-  margin: 0 auto;
-  padding: 0 2.5em; /* Fixed typo in padding */
-}
-
-@media screen and (max-width: 640px) {
-  #wrapper > * > .inner:not(.slideshow-container) {
-    padding: 0 1.25em;
-  }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-/* Applies styles to all .inner elements within #wrapper except for those within #cslider */
-#wrapper > * > .inner:not(#cslider) {
-  width: 100%;
-  max-width: 72em;
-  margin: 0 auto;
-  padding: 0 2.5em; /* Controls padding for default screen sizes */
-}
-
-/* Responsive adjustments for screens smaller than 640px */
-@media screen and (max-width: 640px) {
-  #wrapper > * > .inner:not(#cslider) {
-    padding: 0 1.25em; /* Reduces padding for smaller screens */
-  }
-}
-
-/* Resets for all elements to ensure consistency in box sizing and margins */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, sans-serif;
   background-color: #000;
