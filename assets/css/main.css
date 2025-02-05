@@ -2696,7 +2696,7 @@ button:disabled,
 
 .view-all-button {
   background-color: #0066d3;
-  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255)!important;
   border: none;
   border-radius: 5px;
   font-size: 12px;
