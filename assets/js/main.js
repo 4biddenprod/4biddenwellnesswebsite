@@ -89,101 +89,157 @@
 
 			});
 
-	// Menu.
-		var $menu = $('#menu');
+// Menu functionality
+var $menu = $('#menu');
+var $body = $('body');
 
-		$menu.wrapInner('<div class="inner"></div>');
+$menu.wrapInner('<div class="inner"></div>');
 
-		$menu._locked = false;
+$menu._locked = false;
 
-		$menu._lock = function() {
+$menu._lock = function () {
+    if ($menu._locked) return false;
 
-			if ($menu._locked)
-				return false;
+    $menu._locked = true;
 
-			$menu._locked = true;
+    window.setTimeout(function () {
+        $menu._locked = false;
+    }, 350);
 
-			window.setTimeout(function() {
-				$menu._locked = false;
-			}, 350);
+    return true;
+};
 
-			return true;
+$menu._show = function () {
+    if ($menu._lock()) $body.addClass('is-menu-visible');
+};
 
-		};
+$menu._hide = function () {
+    if ($menu._lock()) $body.removeClass('is-menu-visible');
+};
 
-		$menu._show = function() {
+$menu._toggle = function () {
+    if ($menu._lock()) $body.toggleClass('is-menu-visible');
+};
 
-			if ($menu._lock())
-				$body.addClass('is-menu-visible');
+$menu
+    .appendTo($body)
+    .on('click', function (event) {
+        event.stopPropagation();
+    })
+    .on('click', 'a', function (event) {
+        var href = $(this).attr('href');
 
-		};
+        // Check if the link is a submenu trigger
+        if ($(this).hasClass('submenu-trigger')) {
+            event.preventDefault();
+            event.stopPropagation();
+            let submenuId = $(this).data('target'); // Get the target submenu ID
+            openSubmenu(submenuId); // Open the submenu
+            return;
+        }
 
-		$menu._hide = function() {
+        // Handle standard links
+        event.preventDefault();
+        event.stopPropagation();
 
-			if ($menu._lock())
-				$body.removeClass('is-menu-visible');
+        // Hide menu
+        $menu._hide();
 
-		};
+        // Redirect
+        if (href == '#menu') return;
 
-		$menu._toggle = function() {
+        window.setTimeout(function () {
+            window.location.href = href;
+        }, 350);
+    })
+    .append('<a class="close" href="#menu">Close</a>');
 
-			if ($menu._lock())
-				$body.toggleClass('is-menu-visible');
+$body
+    .on('click', 'a[href="#menu"]', function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+        $menu._toggle();
+    })
+    .on('click', function (event) {
+        // Close menu when clicking outside (on the background)
+        if (!$(event.target).closest('#menu').length && !$(event.target).closest('nav ul li a[href="#menu"]').length) {
+            $menu._hide();
+        }
+    })
+    .on('keydown', function (event) {
+        if (event.keyCode == 27) $menu._hide();
+    });
 
-		};
+// Function to open a submenu
+function openSubmenu(submenuId) {
+    let allMenus = document.querySelectorAll('.submenu');
+    allMenus.forEach(menu => menu.classList.remove('active'));
 
-		$menu
-			.appendTo($body)
-			.on('click', function(event) {
-				event.stopPropagation();
-			})
-			.on('click', 'a', function(event) {
+    document.getElementById(submenuId).classList.add('active');
+}
 
-				var href = $(this).attr('href');
+// Function to go back to the main menu
+function goBackToMenu() {
+    let allMenus = document.querySelectorAll('.submenu');
+    allMenus.forEach(menu => menu.classList.remove('active'));
+}
 
-				event.preventDefault();
-				event.stopPropagation();
+// Event delegation for back buttons
+$menu.on('click', '.back-button', function (event) {
+    event.preventDefault();
 
-				// Hide.
-					$menu._hide();
+    // Get the target ID from the data-target attribute of the clicked back button
+    let targetId = $(this).data('target');
 
-				// Redirect.
-					if (href == '#menu')
-						return;
+    // If the target is the main menu, call goBackToMenu
+    if (targetId === 'menu') {
+        goBackToMenu();
+    } else {
+        // Dynamically hide the current submenu and show the target submenu
+        $(this).closest('.submenu').removeClass('active');
+        document.getElementById(targetId).classList.add('active');
+    }
+});
 
-					window.setTimeout(function() {
-						window.location.href = href;
-					}, 350);
+// Function to dynamically go back to a parent submenu
+function goBackToSubmenu(currentSubmenuId, parentSubmenuId) {
+    document.getElementById(currentSubmenuId).classList.remove('active');
+    document.getElementById(parentSubmenuId).classList.add('active');
+}
 
-			})
-			.append('<a class="close" href="#menu">Close</a>');
+// === FIXED: Open new menu in a new window ===
+function openNewMenuWindow(menuId) {
+    // Ensure the function is executed inside an event handler (prevents popup blockers)
+    let newWindow = window.open("", "_blank", "width=400,height=500");
 
-		$body
-			.on('click', 'a[href="#menu"]', function(event) {
+    if (!newWindow) {
+        alert("Popup blocked! Please allow pop-ups for this site.");
+        return;
+    }
 
-				event.stopPropagation();
-				event.preventDefault();
+    let menuHtml = document.getElementById(menuId).outerHTML;
 
-				// Toggle.
-					$menu._toggle();
+    newWindow.document.write(`
+        <html>
+        <head>
+            <title>Menu</title>
+            <link rel="stylesheet" type="text/css" href="menu css.css">
+        </head>
+        <body>
+            ${menuHtml}
+            <script>
+                function goBackToMenu() { window.close(); }
+                function goBackToSubmenu() { window.close(); }
+            <\/script>
+        </body>
+        </html>
+    `);
 
-			})
-			.on('click', function(event) {
+    newWindow.document.close();
+}
 
-				// Hide.
-					$menu._hide();
-
-			})
-			.on('keydown', function(event) {
-
-				// Hide on escape.
-					if (event.keyCode == 27)
-						$menu._hide();
-
-			});
 
 })(jQuery);
-
 const slider = document.getElementById('cslider-slider');
 const progressBar = document.getElementById('progress-bar');
 const prevButton = document.getElementById('prev-slide');
