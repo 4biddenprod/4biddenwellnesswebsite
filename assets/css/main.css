@@ -2714,6 +2714,8 @@ button:disabled,
   width: auto;
   height: 40px;
   min-width: 100px;
+  margin-right: 25px;
+  
 }
 
 .view-all-button:hover {
@@ -2759,6 +2761,7 @@ button:disabled,
     width: 100%;
     margin-bottom: 0px;
     text-align: center;
+    margin-left: 25px;
   }
 }
 
@@ -3573,38 +3576,34 @@ body {
   margin: auto; /* Centers the slider */
   position: relative;
   overflow: hidden; /* Prevents overflow issues */
-  padding: 0px;
+  padding: 0;
   background: #000000; /* Background color */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  
 }
 
 /* Wrapper and container styles */
 #cslider-wrapper {
   position: relative;
-  width: 100vw;
-  max-width: 100%;
-  margin: 0 0 0 0;
+  width: 100%;
   overflow: hidden; /* Prevent accidental scrolling outside the slider */
-  width: max-content;
 }
 
 .cslider-slider-container {
   position: relative;
   margin: 0 auto;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
-  width: fit-content;
 }
 
 .cslider-slider {
   display: flex;
-  overflow-x: scroll; /* Enable horizontal scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
   overflow-y: hidden; /* Disable vertical scrolling inside the slider */
   scrollbar-width: none; /* Hide scrollbar for Firefox */
   scroll-snap-type: x mandatory; /* Enable smooth snapping */
-  white-space: nowrap; /* Prevent line breaks */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .cslider-slider::-webkit-scrollbar {
@@ -3613,14 +3612,12 @@ body {
 
 .cslider-slides {
   display: flex;
-  width: fit-content; /* Allow flexible width */
+  width: max-content; /* Allow flexible width */
 }
 
 .cslider-slide {
-  flex: 0 0 calc(100% / 3.2); /* Default: 3 images visible */
-  max-width: calc(100% / 3.2);
-  flex: 0 0 calc(100% / 3.2); /* Default: 3 images visible */
-  max-width: calc(100% / 3.2);
+  flex: 0 0 calc(100% / 3.3); /* Default: 3 images visible */
+  max-width: calc(100% / 3.3);
   position: relative;
   margin-right: 10px; /* Adds spacing between the slides */
   scroll-snap-align: start; /* Aligns slides when scrolled */
@@ -3646,7 +3643,6 @@ body {
   background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
   color: white;
   border-radius: 10px;
-
   font-weight: bold;
   opacity: 0; /* Initially hidden */
   transition: all 0.3s ease; /* Smooth fade-in effect */
@@ -3688,6 +3684,7 @@ body {
   width: 100%;
   transform: translateY(-50%);
   z-index: 10;
+  padding: 0 10px; /* Add padding to prevent arrows from touching edges */
 }
 
 .cslider-arrow {
@@ -3719,20 +3716,16 @@ body {
 .cslider-arrow img {
   width: 25px; /* Full width of the button */
   height: 25px; /* Full height of the button */
-  padding-left: 20%;
-  padding-right: 20%;
 }
 
 /* Progress Bar */
 .cslider-progress-container {
   width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto 0; /* Center and add margin */
   height: 5px;
   background-color: #e0e0e0;
   border-radius: 5px;
   overflow: hidden;
-  margin-top: 20px;
 }
 
 .cslider-progress-bar {
@@ -3742,19 +3735,22 @@ body {
   transition: width 0.3s ease;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   .cslider-slide {
-    flex: 0 0 calc(100% / 1.05); /* 2 slides visible */
-    max-width: 90%;
-    flex: 0 0 calc(100% / 1.05); /* 2 slides visible */
-    max-width: 90%;
+    flex: 0 0 calc(100% / 1.1); /* 1 slide visible */
+    max-width: calc(100% / 1.1);
+  }
+
+  .cslider-controls {
+    padding: 0 5px; /* Reduce padding for smaller screens */
   }
 }
+
 @media (min-width: 769px) and (max-width: 1023px) {
   .cslider-slide {
-    flex: 0 0 calc(100% / 2.1); /* 2.5 slides visible */
-    max-width: 70%;
-    
+    flex: 0 0 calc(100% / 2.1); /* 2 slides visible */
+    max-width: calc(100% / 2.1);
   }
 }
 .divider {
