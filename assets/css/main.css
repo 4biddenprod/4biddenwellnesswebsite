@@ -2965,48 +2965,38 @@ body.is-touch .tiles article .content {
   background-color: rgb(0, 0, 0);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Space out logo and nav */
   align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 1em 0;
+  padding: 1em 2em; /* Add horizontal padding */
 }
 
+/* Logo */
 #header .logo {
   display: flex;
-  border-bottom: 0;
   align-items: center;
-  justify-content: center;
   color: inherit;
   font-weight: 900;
   letter-spacing: 0.35em;
-  margin: 0 auto;
   text-decoration: none;
   text-transform: uppercase;
-  display: inline-block;
-}
-
-#header .logo > * {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-#header .logo .symbol {
-  margin-right: 0.65em;
-  display: block;
 }
 
 #header .logo .symbol img {
   display: block;
   width: 22em;
   height: 6em;
+  max-width: 100%; /* Ensure logo scales down */
+  transition: transform 0.3s ease; /* Smooth hover effect */
 }
 
+#header .logo:hover .symbol img {
+  transform: scale(1.05); /* Subtle hover effect */
+}
+
+/* Navigation Menu */
 #header nav {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  z-index: 10000;
+  display: flex;
+  align-items: center;
 }
 
 #header nav ul {
@@ -3015,6 +3005,7 @@ body.is-touch .tiles article .content {
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 1em; /* Add gap between menu items */
 }
 
 #header nav ul li {
@@ -3035,8 +3026,17 @@ body.is-touch .tiles article .content {
   font-weight: 900;
   letter-spacing: 0.35em;
   text-transform: uppercase;
+  color: #fff; /* Ensure contrast for accessibility */
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
 }
 
+#header nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Hover effect */
+  color: #f2849e; /* Highlight color */
+}
+
+/* Menu Icon (Hamburger) */
 #header nav ul li a[href="#menu"] {
   -webkit-tap-highlight-color: transparent;
   width: 4em;
@@ -3086,18 +3086,11 @@ body {
 }
 
 /* Media Queries */
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 768px) {
   #header {
-    padding: 1em 0;
-  }
-
-  body {
-    padding-top: 80px;
-  }
-
-  #header nav {
-    right: 0.5em;
-    top: 0.5em;
+    padding: 1em; /* Reduce padding for smaller screens */
+    flex-direction: column; /* Stack logo and nav vertically */
+    align-items: flex-start; /* Align items to the left */
   }
 
   #header .logo .symbol img {
@@ -3105,9 +3098,35 @@ body {
     height: 5em;
   }
 
+  #header nav {
+    margin-top: 1em; /* Add space between logo and nav */
+  }
+
+  #header nav ul {
+    flex-direction: column; /* Stack menu items vertically */
+    align-items: flex-start; /* Align items to the left */
+    gap: 0.5em; /* Reduce gap between items */
+  }
+
+  #header nav ul li a {
+    width: 100%; /* Full width for mobile */
+    text-align: left; /* Align text to the left */
+  }
+
+  body {
+    padding-top: 160px; /* Adjust padding for stacked header */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #header .logo .symbol img {
+    width: 14em;
+    height: 4em;
+  }
+
   #header nav ul li a[href="#menu"]:before,
   #header nav ul li a[href="#menu"]:after {
-    background-size: 1.5em 1.5em;
+    background-size: 1.5em 1.5em; /* Smaller icon for mobile */
   }
 }
 
