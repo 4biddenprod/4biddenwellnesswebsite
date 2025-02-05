@@ -3764,9 +3764,21 @@ body {
 .button-container {
   flex: 1;
   display: flex;
+  flex-direction: column; /* Stack title and button vertically */
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: #000000;
+  padding: 20px; /* Add padding for spacing */
+}
+
+/* Discover Title */
+.discover-title {
+  font-size: 2rem; /* Large font size for desktop */
+  color: #ffffff; /* Dark text color */
+  margin-bottom: 20px; /* Space between title and button */
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center; /* Center-align text */
 }
 
 /* Modern Button Styling */
@@ -3783,7 +3795,7 @@ body {
 }
 
 .view-all-button:hover {
-  background-color: #d40a0a;
+  background-color: #d40a0a; /* Darker red on hover */
 }
 
 /* Right Side: Image Grid */
@@ -3794,7 +3806,7 @@ body {
   grid-template-rows: repeat(8, 1fr);
   gap: 10px;
   padding: 10px;
-  background-color: #fff;
+  background-color: #000000;
 }
 
 /* Ensure images scale perfectly */
@@ -3812,12 +3824,30 @@ body {
   }
 
   .button-container {
-    height: 100px;
+    height: auto; /* Adjust height for mobile */
+    padding: 20px 10px; /* Reduce padding for smaller screens */
+  }
+
+  .discover-title {
+    font-size: 1.5rem; /* Smaller font size for tablets */
+    margin-bottom: 15px; /* Reduce space between title and button */
   }
 
   .grid-container {
     grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
     grid-template-rows: repeat(12, 1fr); /* Adjust rows for 24 images */
+  }
+}
+
+@media (max-width: 480px) {
+  .discover-title {
+    font-size: 1.25rem; /* Smaller font size for mobile */
+    margin-bottom: 10px; /* Further reduce space between title and button */
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* 1 column on very small screens */
+    grid-template-rows: repeat(24, 1fr); /* 24 rows for 24 images */
   }
 }
 
