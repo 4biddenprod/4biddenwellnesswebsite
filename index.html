@@ -56,44 +56,44 @@
       <div id="main">
         <div class="inner">
           <!-- First Slider -->
-          <div id="slideshow-container-1" class="slideshow-container">
-            <div class="slide fade" data-active>
-              <img src="images/slide3.jpg" alt="Slide 1" />
-            </div>
-            <div class="slide fade">
-              <img src="images/slide2.jpg" alt="Slide 2" loading="lazy" />
-            </div>
-            <div class="slide fade">
-              <img src="images/slide1.jpg" alt="Slide 3" loading="lazy" />
-            </div>
+<div id="slideshow-container-1" class="slideshow-container" aria-label="Image Slideshow 1">
+  <div class="slide fade" data-active aria-hidden="false">
+    <img src="images/slide3.jpg" alt="Slide 1" loading="eager" />
+  </div>
+  <div class="slide fade" aria-hidden="true">
+    <img src="images/slide2.jpg" alt="Slide 2" loading="lazy" />
+  </div>
+  <div class="slide fade" aria-hidden="true">
+    <img src="images/slide1.jpg" alt="Slide 3" loading="lazy" />
+  </div>
 
-            <!-- Dots -->
-            <div class="dots-container">
-              <span class="dot" data-slide="0"></span>
-              <span class="dot" data-slide="1"></span>
-              <span class="dot" data-slide="2"></span>
-            </div>
-          </div>
+  <!-- Dots -->
+  <div class="dots-container" role="tablist">
+    <button class="dot" data-slide="0" role="tab" aria-label="Slide 1" aria-selected="true"></button>
+    <button class="dot" data-slide="1" role="tab" aria-label="Slide 2" aria-selected="false"></button>
+    <button class="dot" data-slide="2" role="tab" aria-label="Slide 3" aria-selected="false"></button>
+  </div>
+</div>
 
-          <!-- Second Slider -->
-          <div id="slideshow-container-2" class="slideshow-container">
-            <div class="slide fade" data-active>
-              <img src="images/slide1.jpg" alt="Slide 1" />
-            </div>
-            <div class="slide fade">
-              <img src="images/slide2.jpg" alt="Slide 2" loading="lazy" />
-            </div>
-            <div class="slide fade">
-              <img src="images/slide3.jpg" alt="Slide 3" loading="lazy" />
-            </div>
+<!-- Second Slider -->
+<div id="slideshow-container-2" class="slideshow-container" aria-label="Image Slideshow 2">
+  <div class="slide fade" data-active aria-hidden="false">
+    <img src="images/slide1.jpg" alt="Slide 1" loading="eager" />
+  </div>
+  <div class="slide fade" aria-hidden="true">
+    <img src="images/slide2.jpg" alt="Slide 2" loading="lazy" />
+  </div>
+  <div class="slide fade" aria-hidden="true">
+    <img src="images/slide3.jpg" alt="Slide 3" loading="lazy" />
+  </div>
 
-            <!-- Dots -->
-            <div class="dots-container">
-              <span class="dot" data-slide="0"></span>
-              <span class="dot" data-slide="1"></span>
-              <span class="dot" data-slide="2"></span>
-            </div>
-          </div>
+  <!-- Dots -->
+  <div class="dots-container" role="tablist">
+    <button class="dot" data-slide="0" role="tab" aria-label="Slide 1" aria-selected="true"></button>
+    <button class="dot" data-slide="1" role="tab" aria-label="Slide 2" aria-selected="false"></button>
+    <button class="dot" data-slide="2" role="tab" aria-label="Slide 3" aria-selected="false"></button>
+  </div>
+</div>
 
           <!DOCTYPE html>
 <html lang="en">

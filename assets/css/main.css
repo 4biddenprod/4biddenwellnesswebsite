@@ -3520,66 +3520,85 @@ body {
   background-color: #000;
   overflow-x: hidden;
 }
+/* Base styles for slideshow container */
 .slideshow-container {
   position: relative;
-  width: 100vw;
-  height: 50vh;
+  width: 100%;
+  height: 50vh; /* Adjust height as needed */
   overflow: hidden;
   margin: 0 auto;
-  left: 50%;
-  transform: translateX(-50%);
+  
 }
 
+/* Slide styles */
 .slide {
-  display: none; /* Hide all slides by default */
   position: absolute;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide[data-active] {
+  opacity: 1;
 }
 
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.slide[data-active] {
-  display: block; /* Show only the active slide */
-}
-
+/* Dots container */
 .dots-container {
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 5px;
+  gap: 10px;
+  z-index: 10;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
-  background-color: white;
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
-  opacity: 0.5;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .dot.active {
-  opacity: 1;
-  background-color: #555;
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.2);
 }
-/* Slider Container - Ensures Responsiveness */
-.cslider-container {
-  max-width: 1200px; /* Prevents the slider from being too wide */
-  margin: auto; /* Centers the slider */
-  position: relative;
-  overflow: hidden; /* Prevents overflow issues */
-  padding: 0;
-  background: #000000; /* Background color */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 40vh; /* Adjust for smaller screens */
+  }
+
+  .dots-container {
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slideshow-container {
+    height: 30vh; /* Adjust for mobile screens */
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+/* divider */
+#slideshow-container-2 {
+  margin-bottom: 40px;
 }
 
 /* Wrapper and container styles */
