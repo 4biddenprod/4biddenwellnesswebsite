@@ -3992,7 +3992,7 @@ body {
   .carrd2-form-embedBody p {
   color: white !important;
   margin-bottom: 8px;
-  font-size: 18px;
+  font-size: 1rem;
   }
   
   .carrd2-form-formContent {
@@ -4133,7 +4133,7 @@ body {
     .second-ml-form-embedBody p {
     color: white !important;
     margin-bottom: 5px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     }
     .second-ml-form-formContent {
     display: flex;
