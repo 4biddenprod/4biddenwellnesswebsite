@@ -3339,7 +3339,7 @@ body.is-menu-visible #menu .close {
 
 #footer {
   padding: 5em 0 6em 0;
-  background-color: #f6f6f6;
+  background-color: #050505;
 }
 
 #footer > .inner {
@@ -3377,7 +3377,7 @@ body.is-menu-visible #menu .close {
   margin-top: 5em;
   list-style: none;
   font-size: 0.8em;
-  color: rgba(88, 88, 88, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 #footer > .inner .copyright a {
