@@ -518,3 +518,149 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
+
+
+//Pillola per Desktop Only
+
+document.addEventListener("DOMContentLoaded", function () {
+    const openBtn = document.getElementById("carrd2-ml-open-popup-btn");
+    const popup = document.getElementById("carrd2-ml-popup-form");
+    const overlay = document.getElementById("carrd2-ml-overlay");
+    const closeBtn = document.getElementById("carrd2-close-btn");
+    const form = document.getElementById("carrd2-ml-form");
+    const successMessage = document.querySelector(".carrd2-form-successBody");
+    
+    let formSubmitted = false;
+    let animationTimeout;
+    
+    function resetAnimation(element, animationClass) {
+    element.style.opacity = "0";
+    element.style.visibility = "hidden";
+    clearTimeout(animationTimeout);
+    animationTimeout = setTimeout(() => {
+    element.classList.remove("carrd2-hidden-btn", "carrd2-visible-btn");
+    void element.offsetWidth;
+    element.style.opacity = "1";
+    element.style.visibility = "visible";
+    element.classList.add(animationClass);
+    }, 10);
+    }
+    
+    openBtn.addEventListener("click", function () {
+    if (formSubmitted) return;
+    resetAnimation(openBtn, "carrd2-hidden-btn");
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    });
+    
+    closeBtn.addEventListener("click", closeForm);
+    overlay.addEventListener("click", closeForm);
+    
+    function closeForm() {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+    if (!formSubmitted) {
+    setTimeout(() => {
+    resetAnimation(openBtn, "carrd2-visible-btn");
+    }, 50);
+    }
+    }
+    
+    form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (formSubmitted) return;
+    
+    const formData = new FormData(form);
+    fetch(form.action, {
+    method: "POST",
+    body: formData,
+    })
+    .then((response) => {
+    if (response.ok) {
+    form.style.display = "none";
+    successMessage.style.display = "flex";
+    formSubmitted = true;
+    openBtn.style.visibility = "hidden";
+    successMessage.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+    }, 3000);
+    } else {
+    console.error("Form submission failed.");
+    }
+    })
+    .catch((error) => console.error("Form submission error:", error));
+    });
+    });
+
+
+	//Pillola per Mobile Only 
+
+	document.addEventListener("DOMContentLoaded", function () {
+		const openBtn = document.getElementById("second-ml-open-popup-btn");
+		const popup = document.getElementById("second-ml-popup-form");
+		const overlay = document.getElementById("second-ml-overlay");
+		const closeBtn = document.getElementById("second-close-btn");
+		const form = document.getElementById("ml-form-second");
+		const successMessage = document.querySelector(".second-ml-form-successBody");
+		const messageElement = document.querySelector(".form-message-second");
+		let formSubmitted = false;
+		const isMobile = window.innerWidth <= 768; // Check if device is mobile
+		const firstVisitKey = "hasVisitedBefore";
+		function resetAnimations() {
+		openBtn.classList.remove("hidden", "visible");
+		void openBtn.offsetWidth; // Trigger reflow to restart animation
+		}
+		function showPopup() {
+		if (!formSubmitted && isMobile) {
+		console.log("Auto-opening popup for first-time mobile visitor");
+		resetAnimations();
+		openBtn.classList.add("hidden");
+		popup.style.display = "block";
+		overlay.style.display = "block";
+		messageElement.style.display = "block"; // Show original message
+		}
+		}
+		// Auto-open for first-time mobile visitors
+		if (!localStorage.getItem(firstVisitKey) && isMobile) {
+		showPopup();
+		localStorage.setItem(firstVisitKey, "true"); // Mark as visited
+		}
+		openBtn.addEventListener("click", function () {
+		if (formSubmitted) return;
+		resetAnimations();
+		openBtn.classList.add("hidden");
+		popup.style.display = "block";
+		overlay.style.display = "block";
+		messageElement.style.display = "block";
+		});
+		closeBtn.addEventListener("click", handleClosePopup);
+		overlay.addEventListener("click", handleClosePopup);
+		function handleClosePopup() {
+		if (formSubmitted) return;
+		resetAnimations();
+		openBtn.classList.add("visible");
+		popup.style.display = "none";
+		overlay.style.display = "none";
+		form.style.display = "block";
+		successMessage.style.display = "none";
+		}
+		form.addEventListener("submit", function (event) {
+		event.preventDefault();
+		messageElement.style.display = "none";
+		form.style.display = "none";
+		successMessage.style.display = "flex";
+		formSubmitted = true;
+		successMessage.scrollIntoView({ behavior: "smooth" });
+		setTimeout(function () {
+		popup.style.display = "none";
+		overlay.style.display = "none";
+		}, 3000);
+		const formData = new FormData(form);
+		fetch(form.action, {
+		method: "POST",
+		body: formData,
+		}).catch((error) => console.error("Form submission error:", error));
+		});
+		});

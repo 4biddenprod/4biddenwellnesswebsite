@@ -3846,18 +3846,6 @@ body {
   }
 }
 
-.harmonized-container {
-  border: 2px dashed red;
-}
-
-.tiles {
-  border: 2px solid rgb(0, 255, 21);
-}
-
-.tiles article {
-  border: 2px solid rgb(255, 255, 255);
-}
-
 /*Custom Slider*/
 .custom-slider-wrapper {
   overflow: hidden;
@@ -3895,3 +3883,354 @@ body {
     aspect-ratio: 1 / 1; /* Square for small phones */
   }
 }
+
+/*Pillola per Desktop Only*/
+
+#carrd2-ml-open-popup-btn {
+  position: fixed;
+  bottom: 65px;
+  right: 5px;
+  z-index: 10000;
+  cursor: pointer;
+  border: #007bff;
+  background: none;
+  padding: 0;
+  width: 80px;
+  height: 80px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s ease;
+  }
+  
+  #carrd2-ml-open-popup-btn img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+  }
+  
+  .carrd2-hidden-btn {
+  position: fixed;
+  bottom: -150px;
+  right: 5px;
+  opacity: 0;
+  visibility: hidden;
+  animation: carrd2-slideDown 1.2s ease forwards;
+  }
+  
+  .carrd2-visible-btn {
+  position: fixed;
+  bottom: 65px;
+  right: 5px;
+  opacity: 1;
+  visibility: visible;
+  animation: carrd2-slideUp 1.2s ease forwards;
+  }
+  
+  @keyframes carrd2-slideDown {
+  from {
+  bottom: 65px;
+  right: 5px;
+  opacity: 1;
+  }
+  to {
+  bottom: -150px;
+  opacity: 0;
+  }
+  }
+  
+  @keyframes carrd2-slideUp {
+  from {
+  bottom: -150px;
+  opacity: 0;
+  }
+  to {
+  bottom: 65px;
+  right: 5px;
+  opacity: 1;
+  }
+  }
+  
+  #carrd2-ml-popup-form {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw; /* 80% of the screen width */
+  height: 80vh; /* 80% of the screen height */
+  max-width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  #carrd2-ml-popup-form video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  }
+  
+  #carrd2-ml-form-content-wrapper {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  margin-top: auto;
+  left: 0;
+  width: 50%; /* Form now takes the left half */
+  height: 40%; /* Full height of the form container */
+  padding: 40px 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px 0 0 15px; /* Rounded corners only on the left */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center form content vertically */
+  align-items: center; /* Align form to the left */
+  }
+  
+  .carrd2-form-embedBody p {
+  color: white !important;
+  margin-bottom: 8px;
+  font-size: 18px;
+  }
+  
+  .carrd2-form-formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  }
+  
+  .carrd2-form-formContent input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  }
+  
+  .carrd2-form-formContent input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .carrd2-button-horizontal button {
+  width: 100%;
+  padding: 12px;
+  background-color: #fff;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  }
+  
+  .carrd2-button-horizontal button:hover {
+  background-color: #ddd;
+  }
+  
+  #carrd2-close-btn {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  line-height: 1;
+  z-index: 10001;
+  }
+  
+  #carrd2-ml-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .carrd2-form-successBody {
+  z-index: 3;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  /* Hide on Mobile */
+  @media (max-width: 768px) {
+  #carrd2-ml-open-popup-btn,
+  #carrd2-ml-popup-form {
+  display: none !important;
+  }
+  }
+
+
+  /*Pillola per mobile only*/
+
+
+  #second-ml-open-popup-btn {
+    position: fixed;
+    bottom: 65px;
+    right: 5px;
+    z-index: 10000;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    width: 80px;
+    height: 80px;
+    }
+    #second-ml-open-popup-btn img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+    }
+    #second-ml-popup-form {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 450px;
+    height: 80vh;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    #second-ml-popup-form video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+    #second-ml-form-content-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0 0 15px 15px;
+    text-align: center;
+    }
+    .second-ml-form-embedBody p {
+    color: white !important;
+    margin-bottom: 10px;
+    font-size: 16px;
+    }
+    .second-ml-form-formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    }
+    .second-ml-form-formContent input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    }
+    .second-ml-form-formContent input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    }
+    .second-ml-button-horizontal button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff0000;
+    color: black!important;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    }
+    .second-ml-button-horizontal button:hover {
+    background-color: #000000;
+    }
+    #second-close-btn {
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    line-height: 1;
+    }
+    #second-ml-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    }
+    .second-ml-form-successBody {
+    z-index: 3;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    @media (min-width: 769px) {
+    #second-ml-open-popup-btn {
+    display: none;
+    }
+    }
+    @keyframes slideDown {
+    from {
+    bottom: 65px;
+    right: 5px;
+    opacity: 1;
+    }
+    to {
+    bottom: -150px;
+    opacity: 0;
+    }
+    }
+    @keyframes slideUp {
+    from {
+    bottom: -150px;
+    opacity: 0;
+    }
+    to {
+    bottom: 65px;
+    right: 5px;
+    opacity: 1;
+    }
+    }
+    .hidden {
+    animation: slideDown 0.8s ease forwards;
+    }
+    .visible {
+    animation: slideUp 0.8s ease forwards;
+    }
