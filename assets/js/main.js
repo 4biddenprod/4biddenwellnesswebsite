@@ -341,3 +341,180 @@ document.addEventListener('DOMContentLoaded', () => {
 	  };
 	});
   });
+
+  //custome slide
+
+  document.addEventListener("DOMContentLoaded", function () {
+	const slider = document.querySelector(".custom-slider");
+	const slides = document.querySelectorAll(".custom-slide");
+	let currentIndex = 0;
+  
+	// Function to show the next slide
+	function showNextSlide() {
+	  currentIndex = (currentIndex + 1) % slides.length;
+	  updateSlider();
+	}
+  
+	// Function to update the slider position
+	function updateSlider() {
+	  const offset = -currentIndex * 100;
+	  slider.style.transform = `translateX(${offset}%)`;
+  
+	  // Update aria-hidden attributes for accessibility
+	  slides.forEach((slide, index) => {
+		slide.setAttribute("aria-hidden", index !== currentIndex);
+	  });
+	}
+  
+	// Auto-play functionality
+	let autoplayInterval = setInterval(showNextSlide, 5000);
+  
+	// Pause autoplay on hover
+	slider.addEventListener("mouseenter", () => clearInterval(autoplayInterval));
+	slider.addEventListener("mouseleave", () => {
+	  autoplayInterval = setInterval(showNextSlide, 5000);
+	});
+  
+	// Touch support for mobile devices
+	let touchStartX = 0;
+	let touchEndX = 0;
+  
+	slider.addEventListener("touchstart", (e) => {
+	  touchStartX = e.touches[0].clientX;
+	});
+  
+	slider.addEventListener("touchend", (e) => {
+	  touchEndX = e.changedTouches[0].clientX;
+	  handleSwipe();
+	});
+  
+	function handleSwipe() {
+	  if (touchEndX < touchStartX) {
+		showNextSlide(); // Swipe left
+	  } else if (touchEndX > touchStartX) {
+		currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Swipe right
+		updateSlider();
+	  }
+	}
+  
+	// Keyboard navigation
+	document.addEventListener("keydown", (e) => {
+	  if (e.key === "ArrowRight") {
+		showNextSlide();
+	  } else if (e.key === "ArrowLeft") {
+		currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+		updateSlider();
+	  }
+	});
+  });
+
+  //Mailer Lite Form ATTUALMENTE NON FUNZIONANTE 
+
+  document.getElementById('contact-form').addEventListener('submit', async function (e) {
+	e.preventDefault();
+  
+	// Get form data
+	const name = document.getElementById('name').value.trim();
+	const email = document.getElementById('email').value.trim();
+	const message = document.getElementById('message').value.trim();
+  
+	// Replace with your MailerLite API key and group ID
+	const API_KEY = 'your-mailerlite-api-key';
+	const GROUP_ID = 'your-subscriber-group-id';
+  
+	// MailerLite API URL
+	const API_URL = `https://api.mailerlite.com/api/v2/groups/${GROUP_ID}/subscribers`;
+  
+	// Data payload
+	const payload = {
+	  email: email,
+	  name: name,
+	  fields: {
+		message: message // Optional: Save the message if your MailerLite allows custom fields
+	  },
+	};
+  
+	try {
+	  // Send data to MailerLite
+	  const response = await fetch(API_URL, {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		  'Authorization': `Bearer ${API_KEY}`, // Use Bearer authorization with your API key
+		},
+		body: JSON.stringify(payload),
+	  });
+  
+	  if (response.ok) {
+		alert('Thank you! Your message has been sent.');
+		document.getElementById('contact-form').reset(); // Clear the form
+	  } else {
+		const error = await response.json();
+		console.error('Error:', error);
+		alert('Something went wrong. Please try again later.');
+	  }
+	} catch (error) {
+	  console.error('Error:', error);
+	  alert('Could not connect to the server. Please try again later.');
+	}
+  });
+  
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const openBtn = document.getElementById("carrd2-ml-open-popup-btn");
+  const popup = document.getElementById("carrd2-ml-popup-form");
+  const overlay = document.getElementById("carrd2-ml-overlay");
+  const closeBtn = document.getElementById("carrd2-close-btn");
+  const form = document.getElementById("carrd2-ml-form");
+  const successMessage = document.querySelector(".carrd2-form-successBody");
+
+  let formSubmitted = false;
+
+  // Open popup
+  openBtn.addEventListener("click", function () {
+    if (formSubmitted) return;
+    popup.style.display = "block";
+    overlay.style.display = "block";
+    popup.setAttribute("aria-hidden", "false");
+    overlay.setAttribute("aria-hidden", "false");
+  });
+
+  // Close popup
+  function closeForm() {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+    popup.setAttribute("aria-hidden", "true");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  closeBtn.addEventListener("click", closeForm);
+  overlay.addEventListener("click", closeForm);
+
+  // Form submission
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (formSubmitted) return;
+
+    const formData = new FormData(form);
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          form.style.display = "none";
+          successMessage.style.display = "flex";
+          formSubmitted = true;
+          openBtn.style.visibility = "hidden";
+          successMessage.scrollIntoView({ behavior: "smooth" });
+        } else {
+          alert("Form submission failed. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.error("Form submission error:", error);
+        alert("An error occurred. Please try again.");
+      });
+  });
+});

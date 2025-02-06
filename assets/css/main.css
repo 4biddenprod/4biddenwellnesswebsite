@@ -3289,6 +3289,10 @@ body.is-menu-visible #menu .close {
 .submenu {
   display: none; /* Hidden by default */
   padding-left: 20px; /* Indent submenus */
+  
+  margin-top: 10px;
+  padding-top: 10px;
+  border-style: dotted;
 }
 
 .submenu.active {
@@ -3297,21 +3301,24 @@ body.is-menu-visible #menu .close {
 
 .submenu li {
   padding: 10px 0; /* Add padding to submenu items */
+  
 }
 
 .submenu button {
-  background: none;
+  background: #8f8e8e;
+  color: #000000;
   border: none;
   color: inherit;
-  font-size: 1em;
+  font-size: 0.6em;
   cursor: pointer;
-  padding: 0;
+  padding: 10;
   margin: 10px 0;
+  text-align: center;
   
 }
 
 .submenu button:hover {
-  text-decoration: underline;
+  text-decoration: none;
   
 }
 
@@ -3849,4 +3856,42 @@ body {
 
 .tiles article {
   border: 2px solid rgb(255, 255, 255);
+}
+
+/*Custom Slider*/
+.custom-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  aspect-ratio: 16 / 9; /* Responsive aspect ratio */
+}
+
+.custom-slider {
+  display: flex;
+  width: 100%; /* 3 slides */
+  transition: transform 0.5s ease-in-out; /* Smooth transition */
+}
+
+.custom-slide {
+  flex: 0 0 100%; /* Full width for each slide */
+  height: 100%;
+}
+
+.custom-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .custom-slider-wrapper {
+    aspect-ratio: 4 / 3; /* Adjust for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-slider-wrapper {
+    aspect-ratio: 1 / 1; /* Square for small phones */
+  }
 }
