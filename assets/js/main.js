@@ -566,46 +566,46 @@ document.addEventListener("DOMContentLoaded", function () {
 		});	
 
 		document.addEventListener("DOMContentLoaded", function () {
-			const form = document.getElementById("contact-form");
-			const feedback = document.getElementById("form-feedback");
-		  
-			form.addEventListener("submit", function (event) {
-			  event.preventDefault(); // Prevent default form submission
-		  
-			  // Validate form fields
-			  const name = form.elements["name"].value.trim();
-			  const email = form.elements["email"].value.trim();
-			  const message = form.elements["message"].value.trim();
-		  
-			  if (!name || !email || !message) {
-				feedback.textContent = "Please fill out all required fields.";
-				feedback.style.display = "block";
-				feedback.setAttribute("aria-invalid", "true");
-				return;
-			  }
-		  
-			  // Submit form via Netlify
-			  fetch("/", {
-				method: "POST",
-				body: new FormData(form),
-			  })
-				.then((response) => {
-				  if (response.ok) {
-					// Display success message
-					feedback.textContent = "Thank you! Your message has been sent.";
-					feedback.style.display = "block";
-					feedback.setAttribute("aria-invalid", "false");
-					form.reset(); // Clear the form
-				  } else {
-					feedback.textContent = "Something went wrong. Please try again.";
-					feedback.style.display = "block";
-					feedback.setAttribute("aria-invalid", "true");
-				  }
-				})
-				.catch((error) => {
-				  feedback.textContent = "Network error. Please try again.";
-				  feedback.style.display = "block";
-				  feedback.setAttribute("aria-invalid", "true");
-				});
-			});
-		  });
+  const form = document.getElementById("contact-form");
+  const feedback = document.getElementById("form-feedback");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Validate form fields
+    const name = form.elements["name"].value.trim();
+    const email = form.elements["email"].value.trim();
+    const message = form.elements["message"].value.trim();
+
+    if (!name || !email || !message) {
+      feedback.textContent = "Please fill out all required fields.";
+      feedback.style.display = "block";
+      feedback.setAttribute("aria-invalid", "true");
+      return;
+    }
+
+    // Submit form via Netlify
+    fetch("/", {
+      method: "POST",
+      body: new FormData(form),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Display success message
+          feedback.textContent = "Thank you! Your message has been sent.";
+          feedback.style.display = "block";
+          feedback.setAttribute("aria-invalid", "false");
+          form.reset(); // Clear the form
+        } else {
+          feedback.textContent = "Something went wrong. Please try again.";
+          feedback.style.display = "block";
+          feedback.setAttribute("aria-invalid", "true");
+        }
+      })
+      .catch((error) => {
+        feedback.textContent = "Network error. Please try again.";
+        feedback.style.display = "block";
+        feedback.setAttribute("aria-invalid", "true");
+      });
+  });
+});

@@ -4299,7 +4299,6 @@ body {
     .visible {
     animation: slideUp 0.8s ease forwards;
     }
-
     /* Visually hidden labels for screen readers */
 .visually-hidden {
   position: absolute;

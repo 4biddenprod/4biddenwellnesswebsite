@@ -523,23 +523,75 @@
     <footer id="footer">
       <div class="inner">
          <!-- Existing Contact Form Section -->
+        <!-- Enhanced Contact Form Section -->
         <section>
           <h2>Get in touch</h2>
-          <form id="contact-form" method="post" action="#">
+          <form
+            id="contact-form"
+            method="POST"
+            data-netlify="true"
+            name="contact-form"
+            netlify-honeypot="bot-field" <!-- Honeypot for spam prevention -->
+          >
+            <!-- Netlify Hidden Fields -->
+            <input type="hidden" name="form-name" value="contact-form" />
+
+            <!-- Honeypot Field (for spam prevention) -->
+            <div style="display: none;">
+              <label for="bot-field">Don’t fill this out if you’re human:</label>
+              <input type="text" name="bot-field" id="bot-field" />
+            </div>
+
+            <!-- Form Fields -->
             <div class="fields">
+              <!-- Name Field -->
               <div class="field half">
-                <input type="text" name="name" id="name" placeholder="Name" />
+                <label for="name" class="visually-hidden">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  required
+                  aria-required="true"
+                />
               </div>
+
+              <!-- Email Field -->
               <div class="field half">
-                <input type="email" name="email" id="email" placeholder="Email" />
+                <label for="email" class="visually-hidden">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  required
+                  aria-required="true"
+                />
               </div>
+
+              <!-- Message Field -->
               <div class="field">
-                <textarea name="message" id="message" placeholder="Message"></textarea>
+                <label for="message" class="visually-hidden">Message</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Message"
+                  required
+                  aria-required="true"
+                ></textarea>
               </div>
             </div>
+
+            <!-- Submit Button -->
             <ul class="actions">
-              <li><button type="submit" class="primary">Send</button></li>
+              <li>
+                <button type="submit" class="primary">Send</button>
+              </li>
             </ul>
+
+            <!-- Error/Success Messages (hidden by default) -->
+            <div id="form-feedback" role="alert" aria-live="polite" style="display: none;"></div>
           </form>
         </section>
 
