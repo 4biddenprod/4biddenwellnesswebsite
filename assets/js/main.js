@@ -564,3 +564,45 @@ document.addEventListener("DOMContentLoaded", function () {
 		}).catch((error) => console.error("Form submission error:", error));
 		});
 		});	
+
+		document.addEventListener("DOMContentLoaded", function () {
+			const form = document.getElementById("contact-form");
+			const feedback = document.getElementById("form-feedback");
+		  
+			form.addEventListener("submit", function (event) {
+			  event.preventDefault(); // Prevent default form submission
+		  
+			  // Validate form fields
+			  const name = form.elements["name"].value.trim();
+			  const email = form.elements["email"].value.trim();
+			  const message = form.elements["message"].value.trim();
+		  
+			  if (!name || !email || !message) {
+				feedback.textContent = "Please fill out all required fields.";
+				feedback.style.display = "block";
+				feedback.setAttribute("aria-invalid", "true");
+				return;
+			  }
+		  
+			  // Submit form via Netlify
+			  fetch("/", {
+				method: "POST",
+				body: new FormData(form),
+			  })
+				.then((response) => {
+				  if (response.ok) {
+					// Redirect to thank-you page
+					window.location.href = "/thank-you.html";
+				  } else {
+					feedback.textContent = "Something went wrong. Please try again.";
+					feedback.style.display = "block";
+					feedback.setAttribute("aria-invalid", "true");
+				  }
+				})
+				.catch((error) => {
+				  feedback.textContent = "Network error. Please try again.";
+				  feedback.style.display = "block";
+				  feedback.setAttribute("aria-invalid", "true");
+				});
+			});
+		  });

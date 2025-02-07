@@ -4299,3 +4299,36 @@ body {
     .visible {
     animation: slideUp 0.8s ease forwards;
     }
+/*form in footer*/
+    /* Visually hidden labels for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Form feedback styling */
+#form-feedback {
+  margin-top: 1em;
+  padding: 0.75em;
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #c62828;
+  border-radius: 4px;
+  display: none;
+}
+
+#form-feedback[aria-invalid="true"] {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+#form-feedback[aria-invalid="false"] {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}

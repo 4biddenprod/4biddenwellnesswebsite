@@ -168,30 +168,75 @@
         
         <footer id="footer">
           <div class="inner">
-                  <form id="contact-form" method="POST" data-netlify="true">
-                      <!-- Netlify Hidden Fields -->
-                      <input type="hidden" name="form-name" value="contact-form" />
-                      <input type="hidden" name="_next" value="https://4biddenprod.netlify.app/thank-you.html" />
-
+            <form
+              id="contact-form"
+              method="POST"
+              data-netlify="true"
+              name="contact-form"
+              action="/thank-you.html" <!-- Netlify redirect after submission -->
+              netlify-honeypot="bot-field" <!-- Honeypot for spam prevention -->
+            >
+              <!-- Netlify Hidden Fields -->
+              <input type="hidden" name="form-name" value="contact-form" />
           
-                      <!-- Form Fields -->
-                      <div class="fields">
-                          <div class="field half">
-                              <input type="text" name="name" id="name" placeholder="Name" required />
-                          </div>
-                          <div class="field half">
-                              <input type="email" name="email" id="email" placeholder="Email" required />
-                          </div>
-                          <div class="field">
-                              <textarea name="message" id="message" placeholder="Message" required></textarea>
-                          </div>
-                      </div>
+              <!-- Honeypot Field (for spam prevention) -->
+              <div style="display: none;">
+                <label for="bot-field">Don’t fill this out if you’re human:</label>
+                <input type="text" name="bot-field" id="bot-field" />
+              </div>
           
-                      <!-- Submit Button -->
-                      <ul class="actions">
-                          <li><button type="submit" class="primary">Send</button></li>
-                      </ul>
-                  </form>
+              <!-- Form Fields -->
+              <div class="fields">
+                <!-- Name Field -->
+                <div class="field half">
+                  <label for="name" class="visually-hidden">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Name"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+          
+                <!-- Email Field -->
+                <div class="field half">
+                  <label for="email" class="visually-hidden">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+          
+                <!-- Message Field -->
+                <div class="field">
+                  <label for="message" class="visually-hidden">Message</label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    placeholder="Message"
+                    required
+                    aria-required="true"
+                  ></textarea>
+                </div>
+              </div>
+          
+              <!-- Submit Button -->
+              <ul class="actions">
+                <li>
+                  <button type="submit" class="primary">Send</button>
+                </li>
+              </ul>
+          
+              <!-- Error/Success Messages (hidden by default) -->
+              <div id="form-feedback" role="alert" aria-live="polite" style="display: none;"></div>
+            </form>
+          </div>
             
           
           
