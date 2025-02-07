@@ -165,26 +165,35 @@
           <div class="divider"></div>
    
           <!-- Footer -->
-        <footer id="footer">
-          <div class="inner">
-            <form id="contact-form" method="POST" data-netlify="true">
-              <input type="hidden" name="form-name" value="contact-form" />
-              <input type="hidden" name="_next" value="/thank-you.html" />
-              <div class="fields">
-                  <div class="field half">
-                      <input type="text" name="name" id="name" placeholder="Name" required />
-                  </div>
-                  <div class="field half">
-                      <input type="email" name="email" id="email" placeholder="Email" required />
-                  </div>
-                  <div class="field">
-                      <textarea name="message" id="message" placeholder="Message" required></textarea>
-                  </div>
+        
+            <footer id="footer">
+              <div class="inner">
+                  <form id="contact-form" method="POST" data-netlify="true">
+                      <!-- Netlify Hidden Fields -->
+                      <input type="hidden" name="form-name" value="contact-form" />
+                      <input type="hidden" name="_next" value="/thank-you.html" />
+          
+                      <!-- Form Fields -->
+                      <div class="fields">
+                          <div class="field half">
+                              <input type="text" name="name" id="name" placeholder="Name" required />
+                          </div>
+                          <div class="field half">
+                              <input type="email" name="email" id="email" placeholder="Email" required />
+                          </div>
+                          <div class="field">
+                              <textarea name="message" id="message" placeholder="Message" required></textarea>
+                          </div>
+                      </div>
+          
+                      <!-- Submit Button -->
+                      <ul class="actions">
+                          <li><button type="submit" class="primary">Send</button></li>
+                      </ul>
+                  </form>
               </div>
-              <ul class="actions">
-                  <li><button type="submit" class="primary">Send</button></li>
-              </ul>
-          </form>
+          </footer>
+          
           
           
     
