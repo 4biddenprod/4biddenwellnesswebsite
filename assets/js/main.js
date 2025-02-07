@@ -591,8 +591,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			  })
 				.then((response) => {
 				  if (response.ok) {
-					// Redirect to thank-you page
-					window.location.href = "/thank-you.html";
+					// Display success message
+					feedback.textContent = "Thank you! Your message has been sent.";
+					feedback.style.display = "block";
+					feedback.setAttribute("aria-invalid", "false");
+					form.reset(); // Clear the form
 				  } else {
 					feedback.textContent = "Something went wrong. Please try again.";
 					feedback.style.display = "block";
