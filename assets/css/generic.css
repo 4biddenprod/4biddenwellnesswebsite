@@ -262,7 +262,7 @@ i {
 
 p {
   margin: 0 0 2em 0;
-  font-size: x-large;
+  font-size: large;
   padding: 2em;
   text-align: center;
 }
@@ -319,6 +319,7 @@ h2 {
 
 h3 {
   font-size: 1em;
+  margin: 0.5rem;
 }
 
 h4 {
@@ -2451,18 +2452,19 @@ input[type="radio"] + label:before {
 }
 
 .image.main {
-    display: flex; /* Enables flexbox */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    width: 100%; /* Ensures full width */
-    height: 20vh; /* Makes the section take full screen height */
-  }
-  
-  .image.main img {
-    width: auto; /* Allows the image to keep its aspect ratio */
-    max-width: 15vh; /* Adjust the size if necessary */
-    height: auto;
-  }
+display: flex; /* Enables flexbox */
+justify-content: center; /* Centers horizontally */
+align-items: center; /* Centers vertically */
+width: 100%; /* Ensures full width */
+height: 20vh; /* Makes the section take full screen height */
+}
+
+.image.main img {
+width: auto; /* Allows the image to keep its aspect ratio */
+max-width: 15vh; /* Adjust the size if necessary */
+height: auto;
+}
+
 
 @media screen and (max-width: 736px) {
   .image.main {
@@ -2672,6 +2674,300 @@ button:disabled,
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Harmonized Container */
+.harmonized-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #000000;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 20px;
+}
+
+/* Featured Section */
+.featured-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: left;
+  padding: 2px 0px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.featured-title {
+  margin-right: 20px;
+  font-size: 14px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.view-all-button {
+  background-color: #0066d3;
+  color: rgb(255, 255, 255)!important;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  transition: background-color 0.2s ease-in-out;
+  text-decoration: none;
+  text-transform: none;
+  box-shadow: none;
+  outline: none;
+  opacity: 1;
+  width: auto;
+  height: 40px;
+  min-width: 100px;
+  margin-right: 25px;
+  
+}
+
+.view-all-button:hover {
+  background-color: #b30000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+.view-all-button:active {
+  background-color: #004080;
+  color: white;
+  transform: scale(0.95);
+}
+
+.view-all-button:focus {
+  outline: 2px solid #007BFF;
+  outline-offset: 2px;
+}
+
+.view-all-button:disabled {
+  background-color: #ffffff;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .featured-section {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: auto;
+    margin-bottom: 0px;
+  }
+
+  .featured-title {
+    margin: 0;
+    margin-bottom: 0px;
+    font-size: 8px;
+  }
+
+  .view-all-button {
+    width: 100%;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-left: 25px;
+  }
+}
+
+/* Tiles Section */
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25em;
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.tiles article {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  position: relative;
+  width: calc(33.33333% - 1.25em); /* 3 columns with gap */
+  margin: 0;
+}
+
+.tiles article > .image {
+  transition: transform 0.5s ease;
+  position: relative;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.tiles article > .image img {
+  display: block;
+  width: 100%;
+}
+
+.tiles article > .image:before {
+  pointer-events: none;
+  transition: background-color 0.5s ease, opacity 0.5s ease;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.tiles article > .image:after {
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 0.25px%3B stroke: %23ffffff%3B %7D%3C/style%3E%3Cline x1='0' y1='0' x2='100' y2='100' /%3E%3Cline x1='100' y1='0' x2='0' y2='100' /%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.25;
+  z-index: 2;
+}
+
+.tiles article > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  border-radius: 4px;
+  border-bottom: 0;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  z-index: 3;
+}
+
+.tiles article > a > :last-child {
+  margin: 0;
+}
+
+.tiles article > a:hover {
+  color: #ffffff !important;
+}
+
+.tiles article > a h2 {
+  margin: 0;
+}
+
+.tiles article > a .content {
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  width: 100%;
+  max-height: 0;
+  line-height: 1.5;
+  margin-top: 0.35em;
+  opacity: 0;
+}
+
+.tiles article > a .content > :last-child {
+  margin-bottom: 0;
+}
+
+.tiles article.style1 > .image:before {
+  background-color: #f2849e;
+}
+
+.tiles article.style2 > .image:before {
+  background-color: #7ecaf6;
+}
+
+.tiles article.style3 > .image:before {
+  background-color: #7bd0c1;
+}
+
+.tiles article.style4 > .image:before {
+  background-color: #c75b9b;
+}
+
+.tiles article.style5 > .image:before {
+  background-color: #ae85ca;
+}
+
+.tiles article.style6 > .image:before {
+  background-color: #8499e7;
+}
+
+body:not(.is-touch) .tiles article:hover > .image {
+  transform: scale(1.1);
+}
+
+body:not(.is-touch) .tiles article:hover > .image:before {
+  background-color: #333333;
+  opacity: 0.35;
+}
+
+body:not(.is-touch) .tiles article:hover > .image:after {
+  opacity: 0;
+}
+
+body:not(.is-touch) .tiles article:hover .content {
+  max-height: 15em;
+  opacity: 1;
+}
+
+* + .tiles {
+  margin-top: 2em;
+}
+
+body.is-preload .tiles article {
+  transform: scale(0.9);
+  opacity: 0;
+}
+
+body.is-touch .tiles article .content {
+  max-height: 15em;
+  opacity: 1;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1280px) {
+  .tiles article {
+    width: calc(33.33333% - 1.25em); /* 3 columns */
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .tiles article {
+    width: calc(50% - 1.25em); /* 2 columns */
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .tiles article {
+    width: calc(50% - 1.25em); /* 2 columns */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tiles article {
+    width: calc(50% - 1.25em); /* 2 columns */
+  }
+}
+
 /* Sticky Header */
 #header {
   position: fixed;
@@ -3258,12 +3554,409 @@ body {
   background-color: #ffffff;
   overflow-x: hidden;
 }
+/* Base styles for slideshow container */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* Adjust height as needed */
+  overflow: hidden;
+  margin: 0 auto;
+  
+}
+
+/* Slide styles */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide[data-active] {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dots container */
+.dots-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 40vh; /* Adjust for smaller screens */
+  }
+
+  .dots-container {
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slideshow-container {
+    height: 30vh; /* Adjust for mobile screens */
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+/* divider */
+#slideshow-container-2 {
+  margin-bottom: 40px;
+}
+
+/* Wrapper and container styles */
+#cslider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Prevent accidental scrolling outside the slider */
+}
+
+.cslider-slider-container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cslider-slider {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden; /* Disable vertical scrolling inside the slider */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  scroll-snap-type: x mandatory; /* Enable smooth snapping */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.cslider-slider::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Webkit browsers */
+}
+
+.cslider-slides {
+  display: flex;
+  width: max-content; /* Allow flexible width */
+}
+
+.cslider-slide {
+  flex: 0 0 calc(100% / 3.3); /* Default: 3 images visible */
+  max-width: calc(100% / 3.3);
+  position: relative;
+  margin-right: 10px; /* Adds spacing between the slides */
+  scroll-snap-align: start; /* Aligns slides when scrolled */
+}
+
+.cslider-slide img {
+  width: 100%;
+  height: 300px; /* Set uniform height */
+  object-fit: cover; /* Maintain aspect ratio */
+  border-radius: 0;
+  transition: transform 0.3s ease;
+  will-change: transform; /* Optimizes hover */
+}
+
+/* Hover text styles */
+.cslider-hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  opacity: 0; /* Initially hidden */
+  transition: all 0.3s ease; /* Smooth fade-in effect */
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cslider-hover-text span {
+  display: block;
+}
+
+.cslider-hover-text .cslider-view {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.cslider-hover-text .cslider-products {
+  font-size: 12px;
+}
+
+/* Hover effects */
+.cslider-slide:hover img {
+  transform: scale(1.05);
+}
+
+.cslider-slide:hover .cslider-hover-text {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Navigation Arrows */
+.cslider-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  z-index: 10;
+  padding: 0 10px; /* Add padding to prevent arrows from touching edges */
+}
+
+.cslider-arrow {
+  background-color: white; /* Maintain the same color */
+  border: 1px solid #bbb; /* Subtle border */
+  color: #555; /* Icon/text color */
+  font-size: 15px; /* Font size for text, if any */
+  width: 30px; /* Button width */
+  height: 30px; /* Button height */
+  border-radius: 20px; /* Rounded corners for a modern look */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease; /* Smooth transition for all animated properties */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.cslider-arrow:hover {
+  background-color: #f9f9f9; /* Lighter background on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+}
+
+.cslider-arrow.disabled {
+  opacity: 0.2; /* Dim button when disabled */
+  pointer-events: none; /* Disable interaction when button is disabled */
+}
+
+.cslider-arrow img {
+  width: 25px; /* Full width of the button */
+  height: 25px; /* Full height of the button */
+}
+
+/* Progress Bar */
+.cslider-progress-container {
+  width: 50%;
+  margin: 20px auto 0; /* Center and add margin */
+  height: 5px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cslider-progress-bar {
+  height: 100%;
+  background-color: #555;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .cslider-slide {
+    flex: 0 0 calc(100% / 1.1); /* 1 slide visible */
+    max-width: calc(100% / 1.1);
+  }
+
+  .cslider-controls {
+    padding: 0 5px; /* Reduce padding for smaller screens */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .cslider-slide {
+    flex: 0 0 calc(100% / 2.1); /* 2 slides visible */
+    max-width: calc(100% / 2.1);
+  }
+}
 .divider {
   height: 2px; /* Thickness of the divider */
   background-color: #ffffff; /* Color of the divider */
   width: 100%; /* Width of the divider */
   margin: 80px 0; /* Space above and below the divider */
 }
+
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full-screen container */
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/* Left Side: Button Container */
+.button-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stack title and button vertically */
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  padding: 20px; /* Add padding for spacing */
+}
+
+/* Discover Title */
+.discover-title {
+  font-size: 2rem; /* Large font size for desktop */
+  color: #ffffff; /* Dark text color */
+  margin-bottom: 20px; /* Space between title and button */
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center; /* Center-align text */
+}
+
+/* Modern Button Styling */
+.view-all-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-button:hover {
+  background-color: #d40a0a; /* Darker red on hover */
+}
+
+/* Right Side: Image Grid */
+.grid-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #000000;
+}
+
+/* Ensure images scale perfectly */
+.grid-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevent cropping or distortion */
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .button-container {
+    height: auto; /* Adjust height for mobile */
+    padding: 20px 10px; /* Reduce padding for smaller screens */
+  }
+
+  .discover-title {
+    font-size: 1.5rem; /* Smaller font size for tablets */
+    margin-bottom: 15px; /* Reduce space between title and button */
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
+    grid-template-rows: repeat(12, 1fr); /* Adjust rows for 24 images */
+  }
+}
+
+@media (max-width: 480px) {
+  .discover-title {
+    font-size: 1.25rem; /* Smaller font size for mobile */
+    margin-bottom: 10px; /* Further reduce space between title and button */
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* 1 column on very small screens */
+    grid-template-rows: repeat(24, 1fr); /* 24 rows for 24 images */
+  }
+}
+
+/*Custom Slider*/
+.custom-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  aspect-ratio: 16 / 9; /* Responsive aspect ratio */
+}
+
+.custom-slider {
+  display: flex;
+  width: 100%; /* 3 slides */
+  transition: transform 0.5s ease-in-out; /* Smooth transition */
+}
+
+.custom-slide {
+  flex: 0 0 100%; /* Full width for each slide */
+  height: 100%;
+}
+
+.custom-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .custom-slider-wrapper {
+    aspect-ratio: 4 / 3; /* Adjust for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-slider-wrapper {
+    aspect-ratio: 1 / 1; /* Square for small phones */
+  }
+}
+
 /*Pillola per Desktop Only*/
 
 #carrd2-ml-open-popup-btn {
@@ -3616,3 +4309,4 @@ body {
     .visible {
     animation: slideUp 0.8s ease forwards;
     }
+    
