@@ -1,425 +1,354 @@
-/*
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+// Main Entry Point
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize all modules
+    Breakpoints.init();
+    Preload.init();
+    TouchDetection.init();
+    Forms.init();
+    Menu.init();
+    Slider.init();
+    CustomSlider.init();
+    DesktopPopup.init();
+    MobilePopup.init();
+    ScrollHandler.init();
+    ImageGrid.init();
+});
 
-(function($) {
+// Breakpoints Module
+const Breakpoints = (function () {
+    function init() {
+        breakpoints({
+            xlarge: ['1281px', '1680px'],
+            large: ['981px', '1280px'],
+            medium: ['737px', '980px'],
+            small: ['481px', '736px'],
+            xsmall: ['361px', '480px'],
+            xxsmall: [null, '360px']
+        });
+    }
 
-	var	$window = $(window),
-		$body = $('body');
+    return { init };
+})();
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ '361px',   '480px'  ],
-			xxsmall:  [ null,      '360px'  ]
-		});
+// Preload Module
+const Preload = (function () {
+    function init() {
+        window.addEventListener('load', function () {
+            window.setTimeout(function () {
+                document.body.classList.remove('is-preload');
+            }, 100);
+        });
+    }
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+    return { init };
+})();
 
-	// Touch?
-		if (browser.mobile)
-			$body.addClass('is-touch');
+// Touch Detection Module
+const TouchDetection = (function () {
+    function init() {
+        if (browser.mobile) {
+            document.body.classList.add('is-touch');
+        }
+    }
 
-	// Forms.
-		var $form = $('form');
+    return { init };
+})();
 
-		// Auto-resizing textareas.
-			$form.find('textarea').each(function() {
+// Forms Module
+const Forms = (function () {
+    function init() {
+        const $form = $('form');
 
-				var $this = $(this),
-					$wrapper = $('<div class="textarea-wrapper"></div>'),
-					$submits = $this.find('input[type="submit"]');
+        $form.find('textarea').each(function () {
+            const $this = $(this);
+            const $wrapper = $('<div class="textarea-wrapper"></div>');
+            const $submits = $this.find('input[type="submit"]');
 
-				$this
-					.wrap($wrapper)
-					.attr('rows', 1)
-					.css('overflow', 'hidden')
-					.css('resize', 'none')
-					.on('keydown', function(event) {
+            $this
+                .wrap($wrapper)
+                .attr('rows', 1)
+                .css('overflow', 'hidden')
+                .css('resize', 'none')
+                .on('keydown', function (event) {
+                    if (event.keyCode == 13 && event.ctrlKey) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $(this).blur();
+                    }
+                })
+                .on('blur focus', function () {
+                    $this.val($.trim($this.val()));
+                })
+                .on('input blur focus --init', function () {
+                    $wrapper.css('height', $this.height());
+                    $this.css('height', 'auto').css('height', $this.prop('scrollHeight') + 'px');
+                })
+                .on('keyup', function (event) {
+                    if (event.keyCode == 9) $this.select();
+                })
+                .triggerHandler('--init');
 
-						if (event.keyCode == 13
-						&&	event.ctrlKey) {
+            if (browser.name == 'ie' || browser.mobile) {
+                $this.css('max-height', '10em').css('overflow-y', 'auto');
+            }
+        });
+    }
 
-							event.preventDefault();
-							event.stopPropagation();
+    return { init };
+})();
 
-							$(this).blur();
+// Menu Module
+const Menu = (function () {
+    let $menu, $body;
 
-						}
+    function init() {
+        $menu = $('#menu');
+        $body = $('body');
 
-					})
-					.on('blur focus', function() {
-						$this.val($.trim($this.val()));
-					})
-					.on('input blur focus --init', function() {
-
-						$wrapper
-							.css('height', $this.height());
-
-						$this
-							.css('height', 'auto')
-							.css('height', $this.prop('scrollHeight') + 'px');
-
-					})
-					.on('keyup', function(event) {
-
-						if (event.keyCode == 9)
-							$this
-								.select();
-
-					})
-					.triggerHandler('--init');
-
-				// Fix.
-					if (browser.name == 'ie'
-					||	browser.mobile)
-						$this
-							.css('max-height', '10em')
-							.css('overflow-y', 'auto');
-
-			});
-
-// Menu functionality
-var $menu = $('#menu');
-var $body = $('body');
-
-$menu.wrapInner('<div class="inner"></div>');
-
-$menu._locked = false;
-
-$menu._lock = function () {
-    if ($menu._locked) return false;
-
-    $menu._locked = true;
-
-    window.setTimeout(function () {
+        $menu.wrapInner('<div class="inner"></div>');
         $menu._locked = false;
-    }, 350);
 
-    return true;
-};
+        $menu._lock = function () {
+            if ($menu._locked) return false;
+            $menu._locked = true;
+            window.setTimeout(function () {
+                $menu._locked = false;
+            }, 350);
+            return true;
+        };
 
-$menu._show = function () {
-    if ($menu._lock()) $body.addClass('is-menu-visible');
-};
+        $menu._show = function () {
+            if ($menu._lock()) $body.addClass('is-menu-visible');
+        };
 
-$menu._hide = function () {
-    if ($menu._lock()) $body.removeClass('is-menu-visible');
-};
+        $menu._hide = function () {
+            if ($menu._lock()) $body.removeClass('is-menu-visible');
+        };
 
-$menu._toggle = function () {
-    if ($menu._lock()) $body.toggleClass('is-menu-visible');
-};
+        $menu._toggle = function () {
+            if ($menu._lock()) $body.toggleClass('is-menu-visible');
+        };
 
-$menu
-    .appendTo($body)
-    .on('click', function (event) {
-        event.stopPropagation();
-    })
-    .on('click', 'a', function (event) {
-        var href = $(this).attr('href');
+        $menu
+            .appendTo($body)
+            .on('click', function (event) {
+                event.stopPropagation();
+            })
+            .on('click', 'a', function (event) {
+                const href = $(this).attr('href');
 
-        // Check if the link is a submenu trigger
-        if ($(this).hasClass('submenu-trigger')) {
+                if ($(this).hasClass('submenu-trigger')) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const submenuId = $(this).data('target');
+                    openSubmenu(submenuId);
+                    return;
+                }
+
+                event.preventDefault();
+                event.stopPropagation();
+                $menu._hide();
+
+                if (href == '#menu') return;
+
+                window.setTimeout(function () {
+                    window.location.href = href;
+                }, 350);
+            })
+            .append('<a class="close" href="#menu">Close</a>');
+
+        $body
+            .on('click', 'a[href="#menu"]', function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                $menu._toggle();
+            })
+            .on('click', function (event) {
+                if (!$(event.target).closest('#menu').length && !$(event.target).closest('nav ul li a[href="#menu"]').length) {
+                    $menu._hide();
+                }
+            })
+            .on('keydown', function (event) {
+                if (event.keyCode == 27) $menu._hide();
+            });
+
+        $menu.on('click', '.back-button', function (event) {
             event.preventDefault();
-            event.stopPropagation();
-            let submenuId = $(this).data('target'); // Get the target submenu ID
-            openSubmenu(submenuId); // Open the submenu
+            const targetId = $(this).data('target');
+            if (targetId === 'menu') {
+                goBackToMenu();
+            } else {
+                $(this).closest('.submenu').removeClass('active');
+                document.getElementById(targetId).classList.add('active');
+            }
+        });
+    }
+
+    function openSubmenu(submenuId) {
+        const allMenus = document.querySelectorAll('.submenu');
+        allMenus.forEach(menu => menu.classList.remove('active'));
+        document.getElementById(submenuId).classList.add('active');
+    }
+
+    function goBackToMenu() {
+        const allMenus = document.querySelectorAll('.submenu');
+        allMenus.forEach(menu => menu.classList.remove('active'));
+    }
+
+    return { init };
+})();
+
+// Slider Module
+const Slider = (function () {
+    let slider, progressBar, prevButton, nextButton;
+
+    function init() {
+        slider = document.getElementById('cslider-slider');
+        progressBar = document.getElementById('progress-bar');
+        prevButton = document.getElementById('prev-slide');
+        nextButton = document.getElementById('next-slide');
+
+        if (!slider || !progressBar || !prevButton || !nextButton) {
+            console.error("Slider elements not found!");
             return;
         }
 
-        // Handle standard links
-        event.preventDefault();
-        event.stopPropagation();
+        slider.addEventListener('scroll', updateProgressBar);
+        prevButton.addEventListener('click', prevSlide);
+        nextButton.addEventListener('click', nextSlide);
+        updateArrows();
+    }
 
-        // Hide menu
-        $menu._hide();
+    function updateArrows() {
+        const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+        prevButton.classList.toggle('disabled', slider.scrollLeft <= 0);
+        nextButton.classList.toggle('disabled', slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5);
+    }
 
-        // Redirect
-        if (href == '#menu') return;
+    function updateProgressBar() {
+        const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+        const scrollPercentage = (slider.scrollLeft / maxScrollLeft) * 100;
+        progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+        updateArrows();
+    }
 
-        window.setTimeout(function () {
-            window.location.href = href;
-        }, 350);
-    })
-    .append('<a class="close" href="#menu">Close</a>');
+    function prevSlide() {
+        slider.scrollBy({
+            left: -slider.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    }
 
-$body
-    .on('click', 'a[href="#menu"]', function (event) {
-        event.stopPropagation();
-        event.preventDefault();
-        $menu._toggle();
-    })
-    .on('click', function (event) {
-        // Close menu when clicking outside (on the background)
-        if (!$(event.target).closest('#menu').length && !$(event.target).closest('nav ul li a[href="#menu"]').length) {
-            $menu._hide();
+    function nextSlide() {
+        slider.scrollBy({
+            left: slider.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    }
+
+    return { init };
+})();
+
+// Custom Slider Module
+const CustomSlider = (function () {
+    let slider, slides, currentIndex, autoplayInterval;
+
+    function init() {
+        slider = document.querySelector(".custom-slider");
+        slides = document.querySelectorAll(".custom-slide");
+        currentIndex = 0;
+
+        if (!slider || !slides.length) {
+            console.error("Custom slider elements not found!");
+            return;
         }
-    })
-    .on('keydown', function (event) {
-        if (event.keyCode == 27) $menu._hide();
-    });
 
-// Function to open a submenu
-function openSubmenu(submenuId) {
-    let allMenus = document.querySelectorAll('.submenu');
-    allMenus.forEach(menu => menu.classList.remove('active'));
+        autoplayInterval = setInterval(showNextSlide, 5000);
 
-    document.getElementById(submenuId).classList.add('active');
-}
+        slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        slider.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(showNextSlide, 5000);
+        });
 
-// Function to go back to the main menu
-function goBackToMenu() {
-    let allMenus = document.querySelectorAll('.submenu');
-    allMenus.forEach(menu => menu.classList.remove('active'));
-}
+        slider.addEventListener('touchstart', handleTouchStart);
+        slider.addEventListener('touchend', handleTouchEnd);
 
-// Event delegation for back buttons
-$menu.on('click', '.back-button', function (event) {
-    event.preventDefault();
-
-    // Get the target ID from the data-target attribute of the clicked back button
-    let targetId = $(this).data('target');
-
-    // If the target is the main menu, call goBackToMenu
-    if (targetId === 'menu') {
-        goBackToMenu();
-    } else {
-        // Dynamically hide the current submenu and show the target submenu
-        $(this).closest('.submenu').removeClass('active');
-        document.getElementById(targetId).classList.add('active');
-    }
-});
-
-// Function to dynamically go back to a parent submenu
-function goBackToSubmenu(currentSubmenuId, parentSubmenuId) {
-    document.getElementById(currentSubmenuId).classList.remove('active');
-    document.getElementById(parentSubmenuId).classList.add('active');
-}
-
-// === FIXED: Open new menu in a new window ===
-function openNewMenuWindow(menuId) {
-    // Ensure the function is executed inside an event handler (prevents popup blockers)
-    let newWindow = window.open("", "_blank", "width=400,height=500");
-
-    if (!newWindow) {
-        alert("Popup blocked! Please allow pop-ups for this site.");
-        return;
+        document.addEventListener('keydown', handleKeyDown);
     }
 
-    let menuHtml = document.getElementById(menuId).outerHTML;
-
-    newWindow.document.write(`
-        <html>
-        <head>
-            <title>Menu</title>
-            <link rel="stylesheet" type="text/css" href="menu css.css">
-        </head>
-        <body>
-            ${menuHtml}
-            <script>
-                function goBackToMenu() { window.close(); }
-                function goBackToSubmenu() { window.close(); }
-            <\/script>
-        </body>
-        </html>
-    `);
-
-    newWindow.document.close();
-}
-
-
-})(jQuery);
-const slider = document.getElementById('cslider-slider');
-const progressBar = document.getElementById('progress-bar');
-const prevButton = document.getElementById('prev-slide');
-const nextButton = document.getElementById('next-slide');
-
-// Update arrows and progress bar
-function updateArrows() {
-    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-    if (slider.scrollLeft <= 0) {
-        prevButton.classList.add('disabled');
-    } else {
-        prevButton.classList.remove('disabled');
+    function showNextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
     }
-    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5) {
-        nextButton.classList.add('disabled');
-    } else {
-        nextButton.classList.remove('disabled');
+
+    function updateSlider() {
+        const offset = -currentIndex * 100;
+        slider.style.transform = `translateX(${offset}%)`;
+        slides.forEach((slide, index) => {
+            slide.setAttribute('aria-hidden', index !== currentIndex);
+        });
     }
-}
 
-// Update progress bar
-slider.addEventListener('scroll', () => {
-    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-    const scrollPercentage = (slider.scrollLeft / maxScrollLeft) * 100;
-    progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
-    updateArrows();
-});
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+    }
 
-// Previous slide button
-prevButton.addEventListener('click', () => {
-    slider.scrollBy({
-        left: -slider.clientWidth / 2,
-        behavior: 'smooth'
-    });
-});
+    function handleTouchEnd(e) {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+    }
 
-// Next slide button
-nextButton.addEventListener('click', () => {
-    slider.scrollBy({
-        left: slider.clientWidth / 2,
-        behavior: 'smooth'
-    });
-});
+    function handleSwipe() {
+        if (touchEndX < touchStartX) {
+            showNextSlide();
+        } else if (touchEndX > touchStartX) {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+    }
 
-// Initialize arrows on page load
-window.addEventListener('load', updateArrows);
-document.addEventListener('DOMContentLoaded', () => {
-	const slideshows = document.querySelectorAll('.slideshow-container');
-  
-	slideshows.forEach((slideshow) => {
-	  const slides = slideshow.querySelectorAll('.slide');
-	  const dots = slideshow.querySelectorAll('.dot');
-	  let currentSlide = 0;
-  
-	  const showSlide = (index) => {
-		slides.forEach((slide, i) => {
-		  slide.setAttribute('aria-hidden', i !== index);
-		  slide.style.opacity = i === index ? 1 : 0;
-		});
-		dots.forEach((dot, i) => {
-		  dot.setAttribute('aria-selected', i === index);
-		  dot.classList.toggle('active', i === index);
-		});
-	  };
-  
-	  dots.forEach((dot, i) => {
-		dot.addEventListener('click', () => {
-		  currentSlide = i;
-		  showSlide(currentSlide);
-		});
-	  });
-  
-	  // Auto-play functionality (optional)
-	  setInterval(() => {
-		currentSlide = (currentSlide + 1) % slides.length;
-		showSlide(currentSlide);
-	  }, 5000);
-  
-	  // Touch support for mobile devices
-	  let touchStartX = 0;
-	  let touchEndX = 0;
-  
-	  slideshow.addEventListener('touchstart', (e) => {
-		touchStartX = e.touches[0].clientX;
-	  });
-  
-	  slideshow.addEventListener('touchend', (e) => {
-		touchEndX = e.changedTouches[0].clientX;
-		handleSwipe();
-	  });
-  
-	  const handleSwipe = () => {
-		if (touchEndX < touchStartX) {
-		  currentSlide = (currentSlide + 1) % slides.length;
-		} else if (touchEndX > touchStartX) {
-		  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-		}
-		showSlide(currentSlide);
-	  };
-	});
-  });
+    function handleKeyDown(e) {
+        if (e.key === "ArrowRight") {
+            showNextSlide();
+        } else if (e.key === "ArrowLeft") {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+    }
 
-  //custome slide
+    return { init };
+})();
 
-  document.addEventListener("DOMContentLoaded", function () {
-	const slider = document.querySelector(".custom-slider");
-	const slides = document.querySelectorAll(".custom-slide");
-	let currentIndex = 0;
-  
-	// Function to show the next slide
-	function showNextSlide() {
-	  currentIndex = (currentIndex + 1) % slides.length;
-	  updateSlider();
-	}
-  
-	// Function to update the slider position
-	function updateSlider() {
-	  const offset = -currentIndex * 100;
-	  slider.style.transform = `translateX(${offset}%)`;
-  
-	  // Update aria-hidden attributes for accessibility
-	  slides.forEach((slide, index) => {
-		slide.setAttribute("aria-hidden", index !== currentIndex);
-	  });
-	}
-  
-	// Auto-play functionality
-	let autoplayInterval = setInterval(showNextSlide, 5000);
-  
-	// Pause autoplay on hover
-	slider.addEventListener("mouseenter", () => clearInterval(autoplayInterval));
-	slider.addEventListener("mouseleave", () => {
-	  autoplayInterval = setInterval(showNextSlide, 5000);
-	});
-  
-	// Touch support for mobile devices
-	let touchStartX = 0;
-	let touchEndX = 0;
-  
-	slider.addEventListener("touchstart", (e) => {
-	  touchStartX = e.touches[0].clientX;
-	});
-  
-	slider.addEventListener("touchend", (e) => {
-	  touchEndX = e.changedTouches[0].clientX;
-	  handleSwipe();
-	});
-  
-	function handleSwipe() {
-	  if (touchEndX < touchStartX) {
-		showNextSlide(); // Swipe left
-	  } else if (touchEndX > touchStartX) {
-		currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Swipe right
-		updateSlider();
-	  }
-	}
-  
-	// Keyboard navigation
-	document.addEventListener("keydown", (e) => {
-	  if (e.key === "ArrowRight") {
-		showNextSlide();
-	  } else if (e.key === "ArrowLeft") {
-		currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-		updateSlider();
-	  }
-	});
-  });
-// Pillola per Desktop Only with Auto-Open for First Visit
-document.addEventListener("DOMContentLoaded", function () {
-    const openBtn = document.getElementById("carrd2-ml-open-popup-btn");
-    const popup = document.getElementById("carrd2-ml-popup-form");
-    const overlay = document.getElementById("carrd2-ml-overlay");
-    const closeBtn = document.getElementById("carrd2-close-btn");
-    const form = document.getElementById("carrd2-ml-form");
-    const successMessage = document.querySelector(".carrd2-form-successBody");
+// Desktop Popup Module
+const DesktopPopup = (function () {
+    let openBtn, popup, overlay, closeBtn, form, successMessage, formSubmitted, animationTimeout, firstVisitKey, isDesktop;
 
-    let formSubmitted = false;
-    let animationTimeout;
-    const firstVisitKey = "hasVisitedDesktopBefore"; // Unique key for desktop visitors
-    const isDesktop = window.innerWidth > 768; // Check if the device is desktop
+    function init() {
+        openBtn = document.getElementById("carrd2-ml-open-popup-btn");
+        popup = document.getElementById("carrd2-ml-popup-form");
+        overlay = document.getElementById("carrd2-ml-overlay");
+        closeBtn = document.getElementById("carrd2-close-btn");
+        form = document.getElementById("carrd2-ml-form");
+        successMessage = document.querySelector(".carrd2-form-successBody");
+        formSubmitted = false;
+        firstVisitKey = "hasVisitedDesktopBefore";
+        isDesktop = window.innerWidth > 768;
+
+        if (!openBtn || !popup || !overlay || !closeBtn || !form || !successMessage) {
+            console.error("Desktop popup elements not found!");
+            return;
+        }
+
+        if (!localStorage.getItem(firstVisitKey) && isDesktop) {
+            showPopup();
+            localStorage.setItem(firstVisitKey, "true");
+        }
+
+        openBtn.addEventListener('click', handleOpenBtnClick);
+        closeBtn.addEventListener('click', closeForm);
+        overlay.addEventListener('click', closeForm);
+        form.addEventListener('submit', handleFormSubmit);
+    }
 
     function resetAnimation(element, animationClass) {
         element.style.opacity = "0";
@@ -434,25 +363,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 10);
     }
 
-    // Auto-open for first-time desktop visitors
-    if (!localStorage.getItem(firstVisitKey) && isDesktop) {
-        console.log("First-time desktop visitor detected. Showing popup.");
+    function showPopup() {
         popup.style.display = "block";
         overlay.style.display = "block";
-        localStorage.setItem(firstVisitKey, "true"); // Mark as visited
     }
 
-    // Open Button Event Listener
-    openBtn.addEventListener("click", function () {
+    function handleOpenBtnClick() {
         if (formSubmitted) return;
         resetAnimation(openBtn, "carrd2-hidden-btn");
-        popup.style.display = "block";
-        overlay.style.display = "block";
-    });
-
-    // Close Button and Overlay Event Listeners
-    closeBtn.addEventListener("click", closeForm);
-    overlay.addEventListener("click", closeForm);
+        showPopup();
+    }
 
     function closeForm() {
         popup.style.display = "none";
@@ -464,8 +384,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Form Submit Event Listener
-    form.addEventListener("submit", function (event) {
+    function handleFormSubmit(event) {
         event.preventDefault();
         if (formSubmitted) return;
 
@@ -490,93 +409,156 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch((error) => console.error("Form submission error:", error));
-    });
-});
+    }
 
+    return { init };
+})();
 
+// Mobile Popup Module
+const MobilePopup = (function () {
+    let openBtn, popup, overlay, closeBtn, form, successMessage, messageElement, formSubmitted, isMobile, firstVisitKey;
 
-	//Pillola per Mobile Only 
+    function init() {
+        openBtn = document.getElementById("second-ml-open-popup-btn");
+        popup = document.getElementById("second-ml-popup-form");
+        overlay = document.getElementById("second-ml-overlay");
+        closeBtn = document.getElementById("second-close-btn");
+        form = document.getElementById("ml-form-second");
+        successMessage = document.querySelector(".second-ml-form-successBody");
+        messageElement = document.querySelector(".form-message-second");
+        formSubmitted = false;
+        isMobile = window.innerWidth <= 768;
+        firstVisitKey = "hasVisitedBefore";
 
-	document.addEventListener("DOMContentLoaded", function () {
-		const openBtn = document.getElementById("second-ml-open-popup-btn");
-		const popup = document.getElementById("second-ml-popup-form");
-		const overlay = document.getElementById("second-ml-overlay");
-		const closeBtn = document.getElementById("second-close-btn");
-		const form = document.getElementById("ml-form-second");
-		const successMessage = document.querySelector(".second-ml-form-successBody");
-		const messageElement = document.querySelector(".form-message-second");
-		let formSubmitted = false;
-		const isMobile = window.innerWidth <= 768; // Check if device is mobile
-		const firstVisitKey = "hasVisitedBefore";
-		function resetAnimations() {
-		openBtn.classList.remove("hidden", "visible");
-		void openBtn.offsetWidth; // Trigger reflow to restart animation
-		}
-		function showPopup() {
-		if (!formSubmitted && isMobile) {
-		console.log("Auto-opening popup for first-time mobile visitor");
-		resetAnimations();
-		openBtn.classList.add("hidden");
-		popup.style.display = "block";
-		overlay.style.display = "block";
-		messageElement.style.display = "block"; // Show original message
-		}
-		}
-		// Auto-open for first-time mobile visitors
-		if (!localStorage.getItem(firstVisitKey) && isMobile) {
-		showPopup();
-		localStorage.setItem(firstVisitKey, "true"); // Mark as visited
-		}
-		openBtn.addEventListener("click", function () {
-		if (formSubmitted) return;
-		resetAnimations();
-		openBtn.classList.add("hidden");
-		popup.style.display = "block";
-		overlay.style.display = "block";
-		messageElement.style.display = "block";
-		});
-		closeBtn.addEventListener("click", handleClosePopup);
-		overlay.addEventListener("click", handleClosePopup);
-		function handleClosePopup() {
-		if (formSubmitted) return;
-		resetAnimations();
-		openBtn.classList.add("visible");
-		popup.style.display = "none";
-		overlay.style.display = "none";
-		form.style.display = "block";
-		successMessage.style.display = "none";
-		}
-		form.addEventListener("submit", function (event) {
-		event.preventDefault();
-		messageElement.style.display = "none";
-		form.style.display = "none";
-		successMessage.style.display = "flex";
-		formSubmitted = true;
-		successMessage.scrollIntoView({ behavior: "smooth" });
-		setTimeout(function () {
-		popup.style.display = "none";
-		overlay.style.display = "none";
-		}, 3000);
-		const formData = new FormData(form);
-		fetch(form.action, {
-		method: "POST",
-		body: formData,
-		}).catch((error) => console.error("Form submission error:", error));
-		});
-		});	
-// Handle Scroll Event
-document.addEventListener("DOMContentLoaded", function () {
-	const promoBanner = document.getElementById("promo-banner");
-	const header = document.getElementById("header");
+        if (!openBtn || !popup || !overlay || !closeBtn || !form || !successMessage || !messageElement) {
+            console.error("Mobile popup elements not found!");
+            return;
+        }
 
-	window.addEventListener("scroll", function () {
-	  if (window.scrollY > 50) {
-		// Adjust this value based on promo banner height
-		header.classList.add("scrolled");
-	  } else {
-		header.classList.remove("scrolled");
-	  }
-	});
-  });
-  
-  
+        if (!localStorage.getItem(firstVisitKey) && isMobile) {
+            showPopup();
+            localStorage.setItem(firstVisitKey, "true");
+        }
+
+        openBtn.addEventListener('click', handleOpenBtnClick);
+        closeBtn.addEventListener('click', handleClosePopup);
+        overlay.addEventListener('click', handleClosePopup);
+        form.addEventListener('submit', handleFormSubmit);
+    }
+
+    function resetAnimations() {
+        openBtn.classList.remove("hidden", "visible");
+        void openBtn.offsetWidth;
+    }
+
+    function showPopup() {
+        if (!formSubmitted && isMobile) {
+            resetAnimations();
+            openBtn.classList.add("hidden");
+            popup.style.display = "block";
+            overlay.style.display = "block";
+            messageElement.style.display = "block";
+        }
+    }
+
+    function handleOpenBtnClick() {
+        if (formSubmitted) return;
+        resetAnimations();
+        openBtn.classList.add("hidden");
+        popup.style.display = "block";
+        overlay.style.display = "block";
+        messageElement.style.display = "block";
+    }
+
+    function handleClosePopup() {
+        if (formSubmitted) return;
+        resetAnimations();
+        openBtn.classList.add("visible");
+        popup.style.display = "none";
+        overlay.style.display = "none";
+        form.style.display = "block";
+        successMessage.style.display = "none";
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        messageElement.style.display = "none";
+        form.style.display = "none";
+        successMessage.style.display = "flex";
+        formSubmitted = true;
+        successMessage.scrollIntoView({ behavior: "smooth" });
+        setTimeout(function () {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+        }, 3000);
+
+        const formData = new FormData(form);
+        fetch(form.action, {
+            method: "POST",
+            body: formData,
+        }).catch((error) => console.error("Form submission error:", error));
+    }
+
+    return { init };
+})();
+
+// Scroll Handler Module
+const ScrollHandler = (function () {
+    let promoBanner, header;
+
+    function init() {
+        promoBanner = document.getElementById("promo-banner");
+        header = document.getElementById("header");
+
+        if (!promoBanner || !header) {
+            console.error("Scroll handler elements not found!");
+            return;
+        }
+
+        window.addEventListener('scroll', handleScroll);
+    }
+
+    function handleScroll() {
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    }
+
+    return { init };
+})();
+
+// Image Grid Module
+const ImageGrid = (function () {
+    let placeholder;
+
+    function init() {
+        placeholder = document.getElementById("image-grid-placeholder");
+
+        if (!placeholder) {
+            console.error("Image grid placeholder not found!");
+            return;
+        }
+
+        fetch("components/image-grid.html", { cache: "no-cache" })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                if (!html || html.trim() === "") {
+                    throw new Error("Received empty HTML content.");
+                }
+                placeholder.innerHTML = html;
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                placeholder.innerHTML = `<p style="color: red; text-align: center;">⚠️ Failed to load image grid. Please try again later.</p>`;
+            });
+    }
+
+    return { init };
+})();

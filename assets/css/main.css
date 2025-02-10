@@ -2824,7 +2824,6 @@ button:disabled,
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 0.25px%3B stroke: %23ffffff%3B %7D%3C/style%3E%3Cline x1='0' y1='0' x2='100' y2='100' /%3E%3Cline x1='100' y1='0' x2='0' y2='100' /%3E%3C/svg%3E");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -2878,11 +2877,11 @@ button:disabled,
 }
 
 .tiles article.style1 > .image:before {
-  background-color: #f2849e;
+  background-color: #f2849e38;
 }
 
 .tiles article.style2 > .image:before {
-  background-color: #7ecaf6;
+  background-color: #7ecaf61a;
 }
 
 .tiles article.style3 > .image:before {
@@ -3228,7 +3227,7 @@ body {
   transform: scale(0.25) rotate(180deg);
   display: block;
   position: absolute;
-  top: 3em;
+  top: 2em;
   left: -6em;
   width: 6em;
   text-indent: 6em;
@@ -3836,117 +3835,164 @@ body {
 }
 
 
-/* Reset default margin and padding */
+/* Reset default margin, padding, and box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Full-screen container */
+/* Main container for grid and button */
 .container {
   display: flex;
-  height: 100%;
+  height: 100%; /* Full height of the viewport */
   width: 100%;
 }
 
-/* Left Side: Button Container */
-.button-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column; /* Stack title and button vertically */
-  justify-content: center;
-  align-items: center;
-  background-color: #000000;
-  padding: 20px; /* Add padding for spacing */
-}
-
-/* Discover Title */
-.discover-title {
-  font-size: 2rem; /* Large font size for desktop */
-  color: #ffffff; /* Dark text color */
-  margin-bottom: 20px; /* Space between title and button */
-  font-weight: bold;
-  line-height: 1.2;
-  text-align: center; /* Center-align text */
-}
-
-/* Modern Button Styling */
-.view-all-button {
-  padding: 15px 30px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.view-all-button:hover {
-  background-color: #d40a0a; /* Darker red on hover */
-}
-
-/* Right Side: Image Grid */
+/* Left Side: Image Grid (50% width) */
 .grid-container {
-  flex: 1;
+  flex: 1; /* Takes 50% of the screen */
+  max-width: 50%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
+  grid-auto-rows: auto;
   gap: 10px;
   padding: 10px;
   background-color: #000000;
 }
 
-/* Ensure images scale perfectly */
+/* Ensuring images fit within grid */
+.grid-container a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .grid-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Prevent cropping or distortion */
+  object-fit: contain; /* Prevents distortion */
   display: block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Responsive Design */
+.grid-container img:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  opacity: 0.9;
+}
+
+/* Right Side: Button Container */
+.button-container {
+  display: flex; /* Takes the remaining 50% */
+  flex-direction: column;
+  max-width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  background-color: #000000;
+  padding: 20px;
+}
+
+/* Wrapping the text and button together */
+.button-content {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  max-width: 600px;
+  justify-content: center;
+}
+
+/* Discover Title */
+.discover-title {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* View All Button */
+.view-all-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.view-all-button:hover {
+  background-color: #d40a0a;
+  transform: scale(1.05);
+}
+
+/* 📱 RESPONSIVE DESIGN 📱 */
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-  }
-
-  .button-container {
-    height: auto; /* Adjust height for mobile */
-    padding: 20px 10px; /* Reduce padding for smaller screens */
-  }
-
-  .discover-title {
-    font-size: 1.5rem; /* Smaller font size for tablets */
-    margin-bottom: 15px; /* Reduce space between title and button */
+    flex-direction: column; /* Stack grid and button vertically */
   }
 
   .grid-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller screens */
-    grid-template-rows: repeat(12, 1fr); /* Adjust rows for 24 images */
+    max-width: 100%; /* Full width for smaller screens */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .button-container {
+    max-width: 100%;
+    padding: 40px 20px;
   }
 }
 
 @media (max-width: 480px) {
   .discover-title {
-    font-size: 1.25rem; /* Smaller font size for mobile */
-    margin-bottom: 10px; /* Further reduce space between title and button */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
 
   .grid-container {
-    grid-template-columns: 1fr; /* 1 column on very small screens */
-    grid-template-rows: repeat(24, 1fr); /* 24 rows for 24 images */
+    grid-template-columns: 1fr; /* 1 column on mobile */
   }
 }
+
+/* Ensure grid does not overlap the slider */
+#image-grid-placeholder {
+  display: block;
+  width: 100%;
+  margin-bottom: 50px; /* Space between the grid and slider */
+}
+
+/* Fix Grid Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+  background-color: #000000;
+  overflow: hidden; /* Prevents overflow issues */
+}
+
+
 
 /*Custom Slider*/
 .custom-slider-wrapper {
   overflow: hidden;
-  width: 100%;
   position: relative;
   aspect-ratio: 16 / 9; /* Responsive aspect ratio */
+  width: 100%;
+  max-width: 100%;
+  margin-top: 50px; /* Push the slider down */
 }
 
 .custom-slider {
@@ -4331,3 +4377,5 @@ body {
     .visible {
     animation: slideUp 0.8s ease forwards;
     }
+
+    

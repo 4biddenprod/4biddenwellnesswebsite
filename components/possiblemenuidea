@@ -1,0 +1,42 @@
+<!-- Nav -->
+<nav id="nav">
+    <ul>
+        <li class="current"><a href="index.html">Home</a></li>
+        <li>
+            <a href="#" aria-haspopup="true">4biddenClothes</a>
+            <ul class="dropotron">
+                <li><a href="mens-clothing.html">Men's Clothing</a></li>
+                <li><a href="womens-clothing.html">Women's Clothing</a></li>
+                <li><a href="accessories.html">Accessories</a></li>
+                <li>
+                    <a href="#" aria-haspopup="true">Collections</a>
+                    <ul class="dropotron level-0">
+                        <li><a href="summer-collection.html">Summer Collection</a></li>
+                        <li><a href="winter-collection.html">Winter Collection</a></li>
+                        <li><a href="limited-edition.html">Limited Edition</a></li>
+                    </ul>
+                </li>
+                <li><a href="sale.html">Sale</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" aria-haspopup="true">4biddenProjects</a>
+            <ul class="dropotron">
+                <li><a href="enlightenment.html">Enlightenment</a></li>
+                <li><a href="community.html">Community Initiatives</a></li>
+                <li><a href="innovation.html">Innovation Hub</a></li>
+            </ul>
+        </li>
+        <li><a href="new-arrivals.html">New Arrivals</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li>
+            <a href="#" aria-haspopup="true">More</a>
+            <ul class="dropotron">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="customer-support.html">Customer Support</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
