@@ -2877,27 +2877,27 @@ button:disabled,
 }
 
 .tiles article.style1 > .image:before {
-  background-color: #f2849e38;
+  background-color: #f2849ebc;
 }
 
 .tiles article.style2 > .image:before {
-  background-color: #7ecaf61a;
+  background-color: #7ecaf6ba;
 }
 
 .tiles article.style3 > .image:before {
-  background-color: #7bd0c1;
+  background-color: #7bd0c0b4;
 }
 
 .tiles article.style4 > .image:before {
-  background-color: #c75b9b;
+  background-color: #c75b9cb6;
 }
 
 .tiles article.style5 > .image:before {
-  background-color: #ae85ca;
+  background-color: #ae85cabb;
 }
 
 .tiles article.style6 > .image:before {
-  background-color: #8499e7;
+  background-color: #8499e7bd;
 }
 
 body:not(.is-touch) .tiles article:hover > .image {
