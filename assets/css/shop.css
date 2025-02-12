@@ -2465,6 +2465,7 @@ input[type="radio"] + label:before {
 .right-text h3 {
   margin-bottom: 10px;
   font-size: 3em;
+  max-width: 90%;
 }
 
 .right-text p {
