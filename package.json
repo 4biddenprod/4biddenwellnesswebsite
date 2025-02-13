@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/4biddenprod/official4biddenprodwebsite#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "^12.0.2",
     "html-webpack-plugin": "^5.6.3",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"
