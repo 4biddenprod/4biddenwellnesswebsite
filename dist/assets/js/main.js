@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Breakpoints.init();
     Preload.init();
     TouchDetection.init();
+    SimpleSlider.init();
     Forms.init();
     Menu.init();
     Slider.init();
@@ -575,3 +576,51 @@ function ml_webform_success_22728804() {
 
 src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" 
   fetch("https://assets.mailerlite.com/jsonp/1260530/forms/146427399209223985/takel")
+
+
+
+
+
+  // Simple Slider Module
+const SimpleSlider = (function () {
+    let sliders;
+
+    function init() {
+        sliders = document.querySelectorAll('.slideshow-container');
+
+        if (!sliders.length) {
+            console.error("Sliders not found!");
+            return;
+        }
+
+        sliders.forEach(slider => {
+            const slides = slider.querySelectorAll('.slide');
+            let currentIndex = 0;
+
+            // Show the first slide
+            slides[currentIndex].classList.add('active');
+            slides[currentIndex].setAttribute('aria-hidden', false);
+
+            // Auto-play the slider
+            setInterval(() => {
+                showNextSlide(slides, currentIndex);
+                currentIndex = (currentIndex + 1) % slides.length;
+            }, 5000); // Change slide every 5 seconds
+        });
+    }
+
+    function showNextSlide(slides, currentIndex) {
+        // Fade out the current slide
+        slides[currentIndex].classList.remove('active');
+        slides[currentIndex].setAttribute('aria-hidden', true);
+
+        // Calculate the next slide index
+        const nextIndex = (currentIndex + 1) % slides.length;
+
+        // Fade in the next slide
+        slides[nextIndex].classList.add('active');
+        slides[nextIndex].setAttribute('aria-hidden', false);
+    }
+
+    return { init };
+})();
