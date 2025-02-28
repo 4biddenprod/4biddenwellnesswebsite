@@ -568,12 +568,15 @@ MyWebsite.ImageGrid = (function () {
 
 
 //Footer form // 
-function ml_webform_success_22728804() {
-    var $ = ml_jQuery || jQuery;
-    $('.ml-subscribe-form-22728804 .row-success').show();
-    $('.ml-subscribe-form-22728804 .row-form').hide();
-  }
 
-src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
+function ml_webform_success_22728804() {
+    try {
+      window.top.location.href = 'https://www.4biddenprod.com';
+    } catch (e) {
+      window.location.href = 'https://www.4biddenprod.com';
+    }
+  }
+src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" 
 
   fetch("https://assets.mailerlite.com/jsonp/1260530/forms/146427399209223985/takel")
+
