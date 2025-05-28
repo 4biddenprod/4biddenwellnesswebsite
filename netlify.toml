@@ -1,5 +1,3 @@
 [build]
-  base = "html5up-phantom"
-  publish = "html5up-phantom/dist"
+  publish = "dist"
   command = "npm run build"
-
