@@ -38,7 +38,7 @@ const pagesWithSecondMenu = [
   'size-guide.html',
   'stolen-history.html',
   'support-current-thing.html',
-  'sweatshirts.html',
+  'shop-page-example.html',
   'they-lie-news2.html',
   'they-lie-news-network.html',
   'they-lie-vision.html',
