@@ -11,11 +11,11 @@ const secondMenu = fs.readFileSync(path.resolve(__dirname, 'src/nav.html'), 'utf
 // List of filenames (pages) that should include BOTH menus (double nav)
 const pagesWithSecondMenu = [
   'all-designs.html',
-  'all-hoodies.html',
-  'backprint-tshirts.html',
-  'bluebeam-iq-test.html',
-  'collection-4biddenprod.html',
-  'cotton-100.html',
+  'energy-fuel.html',
+  'skincare-rituals.html',
+  'grounding.html',
+  'emf-defence.html',
+  'frequency-tools.html',
   'cropped-hoodies.html',
   'design-4biddenprod-nada.html',
   'dystopia-nexus.html',
