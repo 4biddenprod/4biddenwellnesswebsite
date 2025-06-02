@@ -232,10 +232,12 @@ class MultiSlider {
 
     updateArrows() {
         const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
-        this.prevButton.classList.toggle('disabled', this.slider.scrollLeft <= 0);
-        this.nextButton.classList.toggle('disabled', false); // force enable
+        const isScrollable = maxScrollLeft > 1;
 
+        this.prevButton.classList.toggle('disabled', !isScrollable || this.slider.scrollLeft <= 1);
+        this.nextButton.classList.toggle('disabled', !isScrollable || this.slider.scrollLeft >= maxScrollLeft - 1);
     }
+
 
     prevSlide() {
         this.slider.scrollBy({
