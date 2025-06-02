@@ -7,13 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
     SimpleSlider.init();
     Forms.init();
     Menu.init();
-    Slider.init();
     CustomSlider.init();
     DesktopPopup.init();
     MobilePopup.init();
     ScrollHandler.init();
     ImageGrid.init();
+    document.querySelectorAll(".cslider-container").forEach(container => new MultiSlider(container));
+
 });
+
 
 // Breakpoints Module
 const Breakpoints = (function () {
