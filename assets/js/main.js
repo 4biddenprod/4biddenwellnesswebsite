@@ -199,126 +199,63 @@ const Menu = (function () {
     return { init };
 })();
 
-// Slider Module
-const Slider = (function () {
-    let slider, progressBar, prevButton, nextButton;
+// Refactored Multi-instance Slider Logic
+class MultiSlider {
+    constructor(container) {
+        this.container = container;
+        this.slider = container.querySelector('.cslider-slider');
+        this.progressBar = container.querySelector('.cslider-progress-bar');
+        this.prevButton = container.querySelector('.cslider-arrow.left');
+        this.nextButton = container.querySelector('.cslider-arrow.right');
 
-    function init() {
-        slider = document.getElementById('cslider-slider');
-        progressBar = document.getElementById('progress-bar');
-        prevButton = document.getElementById('prev-slide');
-        nextButton = document.getElementById('next-slide');
-
-        if (!slider || !progressBar || !prevButton || !nextButton) {
-            console.error("Slider elements not found!");
+        if (!this.slider || !this.progressBar || !this.prevButton || !this.nextButton) {
+            console.error("Missing slider components in container", container);
             return;
         }
 
-        slider.addEventListener('scroll', updateProgressBar);
-        prevButton.addEventListener('click', prevSlide);
-        nextButton.addEventListener('click', nextSlide);
-        updateArrows();
+        this.bindEvents();
+        this.updateProgressBar();
     }
 
-    function updateArrows() {
-        const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-        prevButton.classList.toggle('disabled', slider.scrollLeft <= 0);
-        nextButton.classList.toggle('disabled', slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5);
+    bindEvents() {
+        this.slider.addEventListener('scroll', this.updateProgressBar.bind(this));
+        this.prevButton.addEventListener('click', this.prevSlide.bind(this));
+        this.nextButton.addEventListener('click', this.nextSlide.bind(this));
     }
 
-    function updateProgressBar() {
-        const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-        const scrollPercentage = (slider.scrollLeft / maxScrollLeft) * 100;
-        progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
-        updateArrows();
+    updateProgressBar() {
+        const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
+        const scrollPercentage = (this.slider.scrollLeft / maxScrollLeft) * 100;
+        this.progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+        this.updateArrows();
     }
 
-    function prevSlide() {
-        slider.scrollBy({
-            left: -slider.clientWidth / 2,
+    updateArrows() {
+        const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
+        this.prevButton.classList.toggle('disabled', this.slider.scrollLeft <= 0);
+        this.nextButton.classList.toggle('disabled', this.slider.scrollLeft + this.slider.clientWidth >= maxScrollLeft - 5);
+    }
+
+    prevSlide() {
+        this.slider.scrollBy({
+            left: -this.slider.clientWidth / 2,
             behavior: 'smooth'
         });
     }
 
-    function nextSlide() {
-        slider.scrollBy({
-            left: slider.clientWidth / 2,
+    nextSlide() {
+        this.slider.scrollBy({
+            left: this.slider.clientWidth / 2,
             behavior: 'smooth'
         });
     }
+}
 
-    return { init };
-})();
+// Initialize all sliders on page
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.cslider-container').forEach(container => new MultiSlider(container));
+});
 
-// Custom Slider Module
-const CustomSlider = (function () {
-    let slider, slides, currentIndex, autoplayInterval;
-
-    function init() {
-        slider = document.querySelector(".custom-slider");
-        slides = document.querySelectorAll(".custom-slide");
-        currentIndex = 0;
-
-        if (!slider || !slides.length) {
-            console.error("Custom slider elements not found!");
-            return;
-        }
-
-        autoplayInterval = setInterval(showNextSlide, 5000);
-
-        slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-        slider.addEventListener('mouseleave', () => {
-            autoplayInterval = setInterval(showNextSlide, 5000);
-        });
-
-        slider.addEventListener('touchstart', handleTouchStart);
-        slider.addEventListener('touchend', handleTouchEnd);
-
-        document.addEventListener('keydown', handleKeyDown);
-    }
-
-    function showNextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlider();
-    }
-
-    function updateSlider() {
-        const offset = -currentIndex * 100;
-        slider.style.transform = `translateX(${offset}%)`;
-        slides.forEach((slide, index) => {
-            slide.setAttribute('aria-hidden', index !== currentIndex);
-        });
-    }
-
-    function handleTouchStart(e) {
-        touchStartX = e.touches[0].clientX;
-    }
-
-    function handleTouchEnd(e) {
-        touchEndX = e.changedTouches[0].clientX;
-        handleSwipe();
-    }
-
-    function handleSwipe() {
-        if (touchEndX < touchStartX) {
-            showNextSlide();
-        } else if (touchEndX > touchStartX) {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSlider();
-        }
-    }
-
-    function handleKeyDown(e) {
-        if (e.key === "ArrowRight") {
-            showNextSlide();
-        } else if (e.key === "ArrowLeft") {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSlider();
-        }
-    }
-
-    return { init };
-})();
 
 // Desktop Popup Module
 const DesktopPopup = (function () {

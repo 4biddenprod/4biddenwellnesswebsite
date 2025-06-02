@@ -80,106 +80,54 @@
     </div>
 
               <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Conflict-Free Slider with Progress Bar and Arrows</title>
-    </head>
-    <body>
-        <!-- Slider HTML -->
-      <div class="cslider-container">
-        <div id="cslider-wrapper">
-            <div class="cslider-slider-container">
-                <!-- Navigation Arrows -->
-                <div class="cslider-controls">
-                  <button class="cslider-arrow left" id="prev-slide" aria-label="Previous Slide">
-                    <img src="images/left-arrow.svg" alt="Previous">
-                </button>
-                <button class="cslider-arrow right" id="next-slide" aria-label="Next Slide">
-                    <img src="images/right-arrow.svg" alt="Next">
-                </button>
-            
-            
-                </div>
-                <!-- Slider Content -->
-                <div class="cslider-slider" id="cslider-slider">
-                    <div class="cslider-slides">
-                        <!-- Slide 1 -->
-                        <div class="cslider-slide">
-                            <a href="new-arrivals.html">
-                                <img src="images/6.webp" alt="New Arrivals Collection">
-                                <div class="cslider-hover-text" aria-hidden="true">
-                                    <span class="cslider-view">VIEW</span>
-                                    <span class="cslider-products">12 products</span>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Slide 2 -->
-                        <div class="cslider-slide">
-                            <a href="skincare-rituals.html">
-                                <img src="images/7.webp" alt="Ancestral Skincare & Body Rituals Collection">
-                                <div class="cslider-hover-text" aria-hidden="true">
-                                    <span class="cslider-view">VIEW</span>
-                                    <span class="cslider-products">2 products</span>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Slide 3 -->
-                        <div class="cslider-slide">
-                            <a href="grounding.html">
-                                <img src="images/8.webp" alt="Grounding & Earthing Essentials Collection">
-                                <div class="cslider-hover-text" aria-hidden="true">
-                                    <span class="cslider-view">VIEW</span>
-                                    <span class="cslider-products">3 products</span>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Slide 4 -->
-                        <div class="cslider-slide">
-                            <a href="energy-fuel.html">
-                                <img src="images/11.webp" alt="Sovereign Energy & Inner Fuel Collection">
-                                <div class="cslider-hover-text" aria-hidden="true">
-                                    <span class="cslider-view">VIEW</span>
-                                    <span class="cslider-products">1 products</span>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Slide 5 -->
-                        <div class="cslider-slide">
-                            <a href="emf-defence.html">
-                                <img src="images/9.webp" alt="EMF & Light Defense Gear Collection">
-                                <div class="cslider-hover-text" aria-hidden="true">
-                                    <span class="cslider-view">VIEW</span>
-                                    <span class="cslider-products">4 products</span>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Slide 6 -->
-                        <div class="cslider-slide">
-                            <a href="frequency-tools.html">
-                                <img src="images/10.webp" alt="Frequency Tools & Resonance Devices Collection">
-                                <div class="cslider-hover-text" aria-hidden="true">
-                                    <span class="cslider-view">VIEW</span>
-                                    <span class="cslider-products">5 products</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Progress Bar -->
-            <div class="cslider-progress-container">
-                <div class="cslider-progress-bar" id="progress-bar"></div>
-            </div>
-        </div>
-        <div class="cslider">
-          <!-- Slideshow content -->
-       </div>
-      </div> 
-      <div class="divider"></div>
-    </body>
-    </html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Multi-Slider Demo</title>
+  <style>
+    .cslider-container { margin-bottom: 60px; }
+    .cslider-slider { display: flex; overflow-x: scroll; scroll-behavior: smooth; }
+    .cslider-slide { min-width: 300px; flex-shrink: 0; }
+    .cslider-progress-container { height: 4px; background: #ccc; }
+    .cslider-progress-bar { height: 100%; background: #000; width: 0; }
+    .cslider-controls { display: flex; justify-content: space-between; }
+    .cslider-arrow.disabled { opacity: 0.5; pointer-events: none; }
+  </style>
+</head>
+<body>
+
+<!-- Repeat this whole block for multiple sliders -->
+<div class="cslider-container">
+  <div class="cslider-slider-wrapper">
+    <div class="cslider-controls">
+      <button class="cslider-arrow left" aria-label="Previous Slide">
+        <img src="images/left-arrow.svg" alt="Previous" />
+      </button>
+      <button class="cslider-arrow right" aria-label="Next Slide">
+        <img src="images/right-arrow.svg" alt="Next" />
+      </button>
+    </div>
+    <div class="cslider-slider">
+      <div class="cslider-slide"><img src="images/6.webp" alt="Slide 1" /></div>
+      <div class="cslider-slide"><img src="images/7.webp" alt="Slide 2" /></div>
+      <div class="cslider-slide"><img src="images/8.webp" alt="Slide 3" /></div>
+      <div class="cslider-slide"><img src="images/9.webp" alt="Slide 4" /></div>
+      <div class="cslider-slide"><img src="images/10.webp" alt="Slide 5" /></div>
+      <div class="cslider-slide"><img src="images/11.webp" alt="Slide 6" /></div>
+    </div>
+    <div class="cslider-progress-container">
+      <div class="cslider-progress-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Repeat again to test multiple sliders! -->
+
+<script src="multi-slider.js"></script> <!-- Link to the new JS file -->
+</body>
+</html>
+
 
     <!-- Below the slider and before the gallery -->
 
