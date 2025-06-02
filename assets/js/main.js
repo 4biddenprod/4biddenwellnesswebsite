@@ -1,3 +1,77 @@
+// ---------------------
+// CustomSlider Module
+// ---------------------
+const CustomSlider = (function () {
+    let slider, slides, currentIndex, autoplayInterval;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function init() {
+        slider = document.querySelector(".custom-slider");
+        slides = document.querySelectorAll(".custom-slide");
+        currentIndex = 0;
+
+        if (!slider || slides.length === 0) {
+            console.error("Custom slider elements not found!");
+            return;
+        }
+
+        autoplayInterval = setInterval(showNextSlide, 5000);
+
+        slider.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        slider.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(showNextSlide, 5000);
+        });
+
+        slider.addEventListener('touchstart', handleTouchStart);
+        slider.addEventListener('touchend', handleTouchEnd);
+
+        document.addEventListener('keydown', handleKeyDown);
+    }
+
+    function showNextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+    }
+
+    function updateSlider() {
+        const offset = -currentIndex * 100;
+        slider.style.transform = `translateX(${offset}%)`;
+        slides.forEach((slide, index) => {
+            slide.setAttribute('aria-hidden', index !== currentIndex);
+        });
+    }
+
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+    }
+
+    function handleTouchEnd(e) {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+    }
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX) {
+            showNextSlide();
+        } else if (touchEndX > touchStartX) {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+    }
+
+    function handleKeyDown(e) {
+        if (e.key === "ArrowRight") {
+            showNextSlide();
+        } else if (e.key === "ArrowLeft") {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+    }
+
+    return { init };
+})();
+
 // Main Entry Point
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize all modules
