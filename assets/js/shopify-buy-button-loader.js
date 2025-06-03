@@ -31,7 +31,8 @@
                   "margin-left": "0",
                   "margin-bottom": "50px"
                 },
-                "text-align": "left"
+                "text-align": "left",
+                "position": "relative"
               },
               title: { "font-size": "26px" },
               button: {
@@ -50,14 +51,18 @@
               compareAt: { "font-size": "15.3px" },
               unitPrice: { "font-size": "15.3px" }
             },
-            layout: "horizontal",
+            layout: "vertical",
             contents: {
-              img: false,
               imgWithCarousel: true,
-              description: true
+              description: true,
+              badge: true
             },
             width: "100%",
-            text: { button: "Add to cart" }
+            text: {
+              button: "Add to cart",
+              outOfStock: "Sold Out"
+            },
+            googleFonts: ["Helvetica Neue", "Arial"]
           },
           cart: {
             styles: {
@@ -71,7 +76,10 @@
                 "border-radius": "10px"
               }
             },
-            text: { total: "Subtotal", button: "Checkout" },
+            text: {
+              total: "Subtotal",
+              button: "Checkout"
+            },
             popup: false
           },
           toggle: {
@@ -86,6 +94,22 @@
           }
         }
       });
+
+      // Add custom badge manually
+      const badge = document.createElement('div');
+      badge.textContent = "🔥 Bestseller";
+      badge.style.position = "absolute";
+      badge.style.top = "10px";
+      badge.style.left = "10px";
+      badge.style.backgroundColor = "#ff0000";
+      badge.style.color = "#fff";
+      badge.style.padding = "4px 8px";
+      badge.style.borderRadius = "5px";
+      badge.style.fontSize = "12px";
+      badge.style.zIndex = "10";
+
+      const root = container.querySelector(".shopify-buy__product");
+      if (root) root.appendChild(badge);
     });
   }
 
