@@ -27,14 +27,15 @@
             styles: {
               product: {
                 "@media (min-width: 601px)": {
-                  "max-width": "100%",
+                  "max-width": "500px",
                   "margin-left": "0",
                   "margin-bottom": "50px"
                 },
                 "text-align": "left",
-                "position": "relative"
+                "position": "relative",
+                "margin": "0 auto"
               },
-              title: { "font-size": "26px" },
+              title: { "font-size": "22px", "margin-bottom": "5px" },
               button: {
                 "font-size": "13px",
                 "padding-top": "14.5px",
@@ -55,7 +56,7 @@
             contents: {
               imgWithCarousel: true,
               description: true,
-              badge: true
+              button: true
             },
             width: "100%",
             text: {
@@ -95,21 +96,7 @@
         }
       });
 
-      // Add custom badge manually
-      const badge = document.createElement('div');
-      badge.textContent = "🔥 Bestseller";
-      badge.style.position = "absolute";
-      badge.style.top = "10px";
-      badge.style.left = "10px";
-      badge.style.backgroundColor = "#ff0000";
-      badge.style.color = "#fff";
-      badge.style.padding = "4px 8px";
-      badge.style.borderRadius = "5px";
-      badge.style.fontSize = "12px";
-      badge.style.zIndex = "10";
-
-      const root = container.querySelector(".shopify-buy__product");
-      if (root) root.appendChild(badge);
+      // OPTIONAL: You may later add badge support here again.
     });
   }
 
