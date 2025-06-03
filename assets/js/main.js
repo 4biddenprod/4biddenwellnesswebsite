@@ -640,3 +640,26 @@ const SimpleSlider = (function () {
 
     return { init };
 })();
+
+const SliderLoader = (function () {
+  function init() {
+    document.querySelectorAll(".slider-placeholder").forEach(placeholder => {
+      fetch("components/slider-one.html", { cache: "no-cache" })
+        .then(response => {
+          if (!response.ok) throw new Error(`Failed to load slider HTML: ${response.status}`);
+          return response.text();
+        })
+        .then(html => {
+          placeholder.innerHTML = html;
+          // Initialize only the loaded slider(s)
+          placeholder.querySelectorAll(".cslider-container").forEach(container => new MultiSlider(container));
+        })
+        .catch(error => {
+          console.error("⚠️ Slider failed to load:", error);
+          placeholder.innerHTML = `<p style="color:red;">⚠️ Slider failed to load</p>`;
+        });
+    });
+  }
+
+  return { init };
+})();
