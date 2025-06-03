@@ -580,3 +580,62 @@ src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235
 
   fetch("https://assets.mailerlite.com/jsonp/1260530/forms/146427399209223985/takel")
 
+// Refactored Multi-instance Slider Logic
+class MultiSlider {
+    constructor(container) {
+        this.container = container;
+        this.slider = container.querySelector('.cslider-slider');
+        this.progressBar = container.querySelector('.cslider-progress-bar');
+        this.prevButton = container.querySelector('.cslider-arrow.left');
+        this.nextButton = container.querySelector('.cslider-arrow.right');
+
+        if (!this.slider || !this.progressBar || !this.prevButton || !this.nextButton) {
+            console.error("Missing slider components in container", container);
+            return;
+        }
+
+        this.bindEvents();
+        this.updateProgressBar();
+    }
+
+    bindEvents() {
+        this.slider.addEventListener('scroll', this.updateProgressBar.bind(this));
+        this.prevButton.addEventListener('click', this.prevSlide.bind(this));
+        this.nextButton.addEventListener('click', this.nextSlide.bind(this));
+    }
+
+    updateProgressBar() {
+        const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
+        const scrollPercentage = (this.slider.scrollLeft / maxScrollLeft) * 100;
+        this.progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+        this.updateArrows();
+    }
+
+    updateArrows() {
+        const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
+        const isScrollable = maxScrollLeft > 1;
+
+        this.prevButton.classList.toggle('disabled', !isScrollable || this.slider.scrollLeft <= 1);
+        this.nextButton.classList.toggle('disabled', !isScrollable || this.slider.scrollLeft >= maxScrollLeft - 1);
+    }
+
+
+    prevSlide() {
+        this.slider.scrollBy({
+            left: -this.slider.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    }
+
+    nextSlide() {
+        this.slider.scrollBy({
+            left: this.slider.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Initialize all sliders on page
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.cslider-container').forEach(container => new MultiSlider(container));
+});
