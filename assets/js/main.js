@@ -86,6 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
     MobilePopup.init();
     ScrollHandler.init();
     ImageGrid.init();
+    SliderLoader.init();
+
     document.querySelectorAll(".cslider-container").forEach(container => new MultiSlider(container));
 
 });

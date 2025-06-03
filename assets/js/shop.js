@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     MyWebsite.MobilePopup.init();
     MyWebsite.ScrollHandler.init();
     MyWebsite.ImageGrid.init();
+    SliderLoader.init();
+
+
 });
 
 // Namespace to avoid global conflicts
