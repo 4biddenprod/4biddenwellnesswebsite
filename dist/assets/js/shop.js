@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     MyWebsite.MobilePopup.init();
     MyWebsite.ScrollHandler.init();
     MyWebsite.ImageGrid.init();
+    SliderLoader.init();
+
+
 });
 
 // Namespace to avoid global conflicts
@@ -580,3 +583,85 @@ src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235
 
   fetch("https://assets.mailerlite.com/jsonp/1260530/forms/146427399209223985/takel")
 
+// Refactored Multi-instance Slider Logic
+class MultiSlider {
+    constructor(container) {
+        this.container = container;
+        this.slider = container.querySelector('.cslider-slider');
+        this.progressBar = container.querySelector('.cslider-progress-bar');
+        this.prevButton = container.querySelector('.cslider-arrow.left');
+        this.nextButton = container.querySelector('.cslider-arrow.right');
+
+        if (!this.slider || !this.progressBar || !this.prevButton || !this.nextButton) {
+            console.error("Missing slider components in container", container);
+            return;
+        }
+
+        this.bindEvents();
+        this.updateProgressBar();
+    }
+
+    bindEvents() {
+        this.slider.addEventListener('scroll', this.updateProgressBar.bind(this));
+        this.prevButton.addEventListener('click', this.prevSlide.bind(this));
+        this.nextButton.addEventListener('click', this.nextSlide.bind(this));
+    }
+
+    updateProgressBar() {
+        const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
+        const scrollPercentage = (this.slider.scrollLeft / maxScrollLeft) * 100;
+        this.progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+        this.updateArrows();
+    }
+
+    updateArrows() {
+        const maxScrollLeft = this.slider.scrollWidth - this.slider.clientWidth;
+        const isScrollable = maxScrollLeft > 1;
+
+        this.prevButton.classList.toggle('disabled', !isScrollable || this.slider.scrollLeft <= 1);
+        this.nextButton.classList.toggle('disabled', !isScrollable || this.slider.scrollLeft >= maxScrollLeft - 1);
+    }
+
+
+    prevSlide() {
+        this.slider.scrollBy({
+            left: -this.slider.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    }
+
+    nextSlide() {
+        this.slider.scrollBy({
+            left: this.slider.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Initialize all sliders on page
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.cslider-container').forEach(container => new MultiSlider(container));
+});
+
+const SliderLoader = (function () {
+  function init() {
+    document.querySelectorAll(".slider-placeholder").forEach(placeholder => {
+      fetch("components/slider-one.html", { cache: "no-cache" })
+        .then(response => {
+          if (!response.ok) throw new Error(`Failed to load slider HTML: ${response.status}`);
+          return response.text();
+        })
+        .then(html => {
+          placeholder.innerHTML = html;
+          // Initialize only the loaded slider(s)
+          placeholder.querySelectorAll(".cslider-container").forEach(container => new MultiSlider(container));
+        })
+        .catch(error => {
+          console.error("⚠️ Slider failed to load:", error);
+          placeholder.innerHTML = `<p style="color:red;">⚠️ Slider failed to load</p>`;
+        });
+    });
+  }
+
+  return { init };
+})();

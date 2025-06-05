@@ -2495,7 +2495,7 @@ input[type="radio"] + label:before {
   }
 
   .right-text h3 {
-      font-size: 6vw; /* Responsive font size for smaller screens */
+      font-size: 3vw; /* Responsive font size for smaller screens */
   }
 
   .right-text h2 {
@@ -2505,7 +2505,7 @@ input[type="radio"] + label:before {
 
 @media screen and (max-width: 480px) {
   .right-text h3 {
-      font-size: 8vw; /* Larger font size for very small screens */
+      font-size: 4vw; /* Larger font size for very small screens */
   }
 
   .right-text h2 {
@@ -2744,7 +2744,7 @@ button:disabled,
 .harmonized-container {
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #000000;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -3745,6 +3745,7 @@ body {
 /* divider */
 #slideshow-container-2 {
   margin-bottom: 40px;
+  
 }
 
 /* Wrapper and container styles */
@@ -3921,6 +3922,14 @@ body {
 .divider {
   height: 20px; /* Thickness of the divider */
   background-color: #000000; /* Color of the divider */
+  width: 100%; /* Width of the divider */
+  margin: 1em 0; /* Space above and below the divider */
+}
+
+
+.divider-1 {
+  height: 20px; /* Thickness of the divider */
+  background-color: #ffffff; /* Color of the divider */
   width: 100%; /* Width of the divider */
   margin: 1em 0; /* Space above and below the divider */
 }

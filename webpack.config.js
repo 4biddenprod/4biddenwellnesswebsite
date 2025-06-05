@@ -22,7 +22,7 @@ const pagesWithSecondMenu = [
   'false-flags-files.html',
   'forg3t.html',
   'his-story.html',
-  'hive-mind-chronicles.html',
+  'blue-light-glasses.html',
   'indoctrination.html',
   'long-sleeves.html',
   'manufactured-minds.html',
