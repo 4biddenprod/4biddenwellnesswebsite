@@ -7,6 +7,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 // Read your shared menu files (ensure these exist in src/)
 const firstMenu = fs.readFileSync(path.resolve(__dirname, 'src/menu.html'), 'utf8');
 const secondMenu = fs.readFileSync(path.resolve(__dirname, 'src/nav.html'), 'utf8');
+const promoBanner = fs.readFileSync(path.resolve(__dirname, 'src/promoBanner.html'), 'utf8');
+
 
 // List of filenames (pages) that should include BOTH menus (double nav)
 const pagesWithSecondMenu = [
@@ -129,6 +131,8 @@ module.exports = {
         title: page.title,
         mainMenu: firstMenu, // In your templates, use <%= mainMenu %>
         content: page.content,
+        promoBanner: promoBanner,
+
       };
       // If this page should include the second menu, add it
       if (page.hasSecondMenu) {
