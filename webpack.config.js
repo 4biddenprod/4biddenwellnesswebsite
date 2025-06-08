@@ -34,7 +34,7 @@ const pagesWithSecondMenu = [
   'normie-land.html',
   'premium-backprints.html',
   'premium-frontprints.html',
-  'propaganda-missile.html',
+  'tallow-honey.html',
   'pullover-hoodies.html',
   'zipup-hoodies.html',
   'size-guide.html',
