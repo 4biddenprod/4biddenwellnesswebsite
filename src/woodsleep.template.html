@@ -120,6 +120,212 @@
                       <!-- Product component here -->
                       
                         <!-- Product component here -->
+                                        <div id='product-component-1749408178039'></div>
+                <script type="text/javascript">
+                /*<![CDATA[*/
+                (function () {
+                  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+                  if (window.ShopifyBuy) {
+                    if (window.ShopifyBuy.UI) {
+                      ShopifyBuyInit();
+                    } else {
+                      loadScript();
+                    }
+                  } else {
+                    loadScript();
+                  }
+                  function loadScript() {
+                    var script = document.createElement('script');
+                    script.async = true;
+                    script.src = scriptURL;
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+                    script.onload = ShopifyBuyInit;
+                  }
+                  function ShopifyBuyInit() {
+                    var client = ShopifyBuy.buildClient({
+                      domain: '8x8rwz-gb.myshopify.com',
+                      storefrontAccessToken: '12346cc3e0994df08d5ea75dbc794fda',
+                    });
+                    ShopifyBuy.UI.onReady(client).then(function (ui) {
+                      ui.createComponent('product', {
+                        id: '15191973691766',
+                        node: document.getElementById('product-component-1749408178039'),
+                        moneyFormat: '%24%7B%7Bamount%7D%7D',
+                        options: {
+                  "product": {
+                    "styles": {
+                      "product": {
+                        "@media (min-width: 601px)": {
+                          "max-width": "100%",
+                          "margin-left": "0",
+                          "margin-bottom": "50px"
+                        },
+                        "text-align": "left"
+                      },
+                      "title": {
+                        "font-size": "26px"
+                      },
+                      "button": {
+                        "font-size": "13px",
+                        "padding-top": "14.5px",
+                        "padding-bottom": "14.5px",
+                        ":hover": {
+                          "background-color": "#000000"
+                        },
+                        "background-color": "#000000",
+                        ":focus": {
+                          "background-color": "#000000"
+                        },
+                        "border-radius": "10px",
+                        "padding-left": "60px",
+                        "padding-right": "60px"
+                      },
+                      "quantityInput": {
+                        "font-size": "13px",
+                        "padding-top": "14.5px",
+                        "padding-bottom": "14.5px"
+                      },
+                      "price": {
+                        "font-size": "18px"
+                      },
+                      "compareAt": {
+                        "font-size": "15.299999999999999px"
+                      },
+                      "unitPrice": {
+                        "font-size": "15.299999999999999px"
+                      }
+                    },
+                    "layout": "horizontal",
+                    "contents": {
+                      "img": false,
+                      "imgWithCarousel": true,
+                      "description": true
+                    },
+                    "width": "100%",
+                    "text": {
+                      "button": "Add to cart"
+                    }
+                  },
+                  "productSet": {
+                    "styles": {
+                      "products": {
+                        "@media (min-width: 601px)": {
+                          "margin-left": "-20px"
+                        }
+                      }
+                    }
+                  },
+                  "modalProduct": {
+                    "contents": {
+                      "img": false,
+                      "imgWithCarousel": true
+                    },
+                    "styles": {
+                      "product": {
+                        "@media (min-width: 601px)": {
+                          "max-width": "100%",
+                          "margin-left": "0px",
+                          "margin-bottom": "0px"
+                        }
+                      },
+                      "button": {
+                        "font-size": "13px",
+                        "padding-top": "14.5px",
+                        "padding-bottom": "14.5px",
+                        ":hover": {
+                          "background-color": "#000000"
+                        },
+                        "background-color": "#000000",
+                        ":focus": {
+                          "background-color": "#000000"
+                        },
+                        "border-radius": "10px",
+                        "padding-left": "60px",
+                        "padding-right": "60px"
+                      },
+                      "quantityInput": {
+                        "font-size": "13px",
+                        "padding-top": "14.5px",
+                        "padding-bottom": "14.5px"
+                      },
+                      "title": {
+                        "font-family": "Helvetica Neue, sans-serif",
+                        "font-weight": "bold",
+                        "font-size": "26px",
+                        "color": "#4c4c4c"
+                      },
+                      "price": {
+                        "font-family": "Helvetica Neue, sans-serif",
+                        "font-weight": "normal",
+                        "font-size": "18px",
+                        "color": "#4c4c4c"
+                      },
+                      "compareAt": {
+                        "font-family": "Helvetica Neue, sans-serif",
+                        "font-weight": "normal",
+                        "font-size": "15.299999999999999px",
+                        "color": "#4c4c4c"
+                      },
+                      "unitPrice": {
+                        "font-family": "Helvetica Neue, sans-serif",
+                        "font-weight": "normal",
+                        "font-size": "15.299999999999999px",
+                        "color": "#4c4c4c"
+                      },
+                      "description": {
+                        "font-family": "Arial, sans-serif"
+                      }
+                    },
+                    "text": {
+                      "button": "Add to cart"
+                    }
+                  },
+                  "option": {},
+                  "cart": {
+                    "styles": {
+                      "button": {
+                        "font-size": "13px",
+                        "padding-top": "14.5px",
+                        "padding-bottom": "14.5px",
+                        ":hover": {
+                          "background-color": "#000000"
+                        },
+                        "background-color": "#000000",
+                        ":focus": {
+                          "background-color": "#000000"
+                        },
+                        "border-radius": "10px"
+                      }
+                    },
+                    "text": {
+                      "total": "Subtotal",
+                      "button": "Checkout"
+                    },
+                    "popup": false
+                  },
+                  "toggle": {
+                    "styles": {
+                      "toggle": {
+                        "background-color": "#000000",
+                        ":hover": {
+                          "background-color": "#000000"
+                        },
+                        ":focus": {
+                          "background-color": "#000000"
+                        }
+                      },
+                      "count": {
+                        "font-size": "13px"
+                      }
+                    }
+                  }
+                },
+                      });
+                    });
+                  }
+                })();
+                /*]]>*/
+                </script>
                           
 
 
@@ -138,25 +344,25 @@
     
                 <!-- 1st Title Section -->
                 <div class="featured-section" style="display: flex; justify-content: space-between; align-items: center;">
-                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Orange – Screen Shield – C2</h2>
+                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Soothe, Nourish, Restore</h2>
                 </div>
 
                 <!-- Text Section -->
                 <section class="tiles" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
                   <article class="style-text" style="flex: 1 1 calc(33.333% - 20px); display: flex; align-items: center; justify-content: center; background-color: #f4f4f4; padding: 20px; text-align: center;">
                     <div>
-                      <h3 style="margin-bottom: 10px; font-size: 20px;">Shield Your Mind from Digital Decay</h3>
-                      <p style="font-size: 16px; color: #333;">Filters 99.5% of harmful blue light to protect your dopamine cycles and preserve mental clarity during long screen exposure.</p>
+                      <h3 style="margin-bottom: 10px; font-size: 20px;">Skin Comfort. Skin Resilience.</h3>
+                      <p style="font-size: 16px; color: #333;">Relieve discomfort and lock in deep moisture with nature’s original formula—whipped tallow and raw honey for lasting hydration and repair.</p>
                     </div>
                   </article>
                   <article class="style1" style="flex: 1 1 calc(33.333% - 20px);">
                     <span class="image">
-                      <img src="images/oc2.webp" alt="" />
+                      <img src="images/wtb1.webp" alt="" />
                     </span>
                   </article>
                   <article class="style2" style="flex: 1 1 calc(33.333% - 20px);">
                     <span class="image">
-                      <img src="images/oc2-1.webp" alt="" />
+                      <img src="images/wtb2.webp" alt="" />
                     </span>
                   </article>
                 </section>
@@ -167,31 +373,147 @@
               
                 <!-- 2nd Title Section -->
                 <div class="featured-section" style="display: flex; justify-content: space-between; align-items: center;">
-                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Orange – Focus Filter – C1</h2>
+                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Soothe, Soften, Seal In Nourishment</h2>
                   </div>
 
                 <!-- Tiles Section -->
                 <section class="tiles" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
                   <article class="style1" style="flex: 1 1 calc(33.333% - 20px);">
                     <span class="image">
-                      <img src="images/oc1.webp" alt="" />
+                      <img src="images/wtb3.webp" alt="" />
                     </span>
                   </article>
                   <article class="style2" style="flex: 1 1 calc(33.333% - 20px);">
                     <span class="image">
-                      <img src="images/oc1-1.webp" alt="" />
+                      <img src="images/wtb4.webp" alt="" />
                     </span>
                   </article>
                   <article class="style-text" style="flex: 1 1 calc(33.333% - 20px); display: flex; align-items: center; justify-content: center; background-color: #f4f4f4; padding: 20px; text-align: center;">
                     <div>
-                      <h3 style="margin-bottom: 10px; font-size: 20px;"> Lock In. Tune Out.</h3>
-                      <p style="font-size: 16px; color: #333;"> Block distractions and sharpen mental clarity with targeted blue light filtration for late-night projects and deep work.</p>
+                      <h3 style="margin-bottom: 10px; font-size: 20px;">Deep Comfort. Lasting Care.</h3>
+                      <p style="font-size: 16px; color: #333;">Soothe irritation, soften roughness, and lock in long-lasting hydration with this rich ancestral balm. Your skin remembers this touch.</p>
                     </div>
                   </article>
                 </section>
               
 
               <div class="divider-1"></div>
+
+              <!-- 1st Title Section -->
+                <div class="featured-section" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Deep Hydration. Daily Ritual.</h2>
+                </div>
+
+                <!-- Text Section -->
+                <section class="tiles" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                  <article class="style-text" style="flex: 1 1 calc(33.333% - 20px); display: flex; align-items: center; justify-content: center; background-color: #f4f4f4; padding: 20px; text-align: center;">
+                    <div>
+                      <h3 style="margin-bottom: 10px; font-size: 20px;">Quench & Restore Every Day</h3>
+                      <p style="font-size: 16px; color: #333;">Deeply moisturize, protect, and nourish your skin with every use. Pure tallow and honey—nature’s hydration code, now in your hands.</p>
+                    </div>
+                  </article>
+                  <article class="style1" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb5.webp" alt="" />
+                    </span>
+                  </article>
+                  <article class="style2" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb6.webp" alt="" />
+                    </span>
+                  </article>
+                </section>
+              
+
+              <div class="divider-1"></div>
+
+              
+                <!-- 2nd Title Section -->
+                <div class="featured-section" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Balanced. Gentle. Ancestral Care.</h2>
+                  </div>
+
+                <!-- Tiles Section -->
+                <section class="tiles" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                  <article class="style1" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb7.webp" alt="" />
+                    </span>
+                  </article>
+                  <article class="style2" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb8.webp" alt="" />
+                    </span>
+                  </article>
+                  <article class="style-text" style="flex: 1 1 calc(33.333% - 20px); display: flex; align-items: center; justify-content: center; background-color: #f4f4f4; padding: 20px; text-align: center;">
+                    <div>
+                      <h3 style="margin-bottom: 10px; font-size: 20px;">Hydrate. Soothe. Refresh.</h3>
+                      <p style="font-size: 16px; color: #333;">Long-lasting moisture without stickiness. This balm soothes and repairs, leaving your skin soft, delicate, and naturally radiant.</p>
+                    </div>
+                  </article>
+                </section>
+
+              <div class="divider-1"></div>
+
+              <!-- 1st Title Section -->
+                <div class="featured-section" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Pure. Potent. Precisely Crafted.</h2>
+                </div>
+
+                <!-- Text Section -->
+                <section class="tiles" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                  <article class="style-text" style="flex: 1 1 calc(33.333% - 20px); display: flex; align-items: center; justify-content: center; background-color: #f4f4f4; padding: 20px; text-align: center;">
+                    <div>
+                      <h3 style="margin-bottom: 10px; font-size: 20px;">Ancestral Balm. Modern Precision.</h3>
+                      <p style="font-size: 16px; color: #333;">59g of pure whipped tallow & honey. Lightweight, deeply hydrating, and perfectly sized for your daily ritual. No fillers—just results.</p>
+                    </div>
+                  </article>
+                  <article class="style1" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb9.webp" alt="" />
+                    </span>
+                  </article>
+                  <article class="style2" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb10.webp" alt="" />
+                    </span>
+                  </article>
+                </section>
+              
+
+              <div class="divider-1"></div>
+
+              
+                <!-- 2nd Title Section -->
+                <div class="featured-section" style="display: flex; justify-content: space-between; align-items: center;">
+                  <h2 class="featured-title" style="margin: 0; font-size: 24px; color: #000000;">Bundle & Save — Ritual Skin Care</h2>
+                  </div>
+
+                <!-- Tiles Section -->
+                <section class="tiles" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                  <article class="style1" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb12.webp" alt="" />
+                    </span>
+                  </article>
+                  <article class="style2" style="flex: 1 1 calc(33.333% - 20px);">
+                    <span class="image">
+                      <img src="images/wtb13.webp" alt="" />
+                    </span>
+                  </article>
+                  <article class="style-text" style="flex: 1 1 calc(33.333% - 20px); display: flex; align-items: center; justify-content: center; background-color: #f4f4f4; padding: 20px; text-align: center;">
+                    <div>
+                      <h3 style="margin-bottom: 10px; font-size: 20px;">4-Pack & 10-Pack — Feed Skin for Seasons</h3>
+                      <p style="font-size: 16px; color: #333;">Stock up on ancestral nourishment. Perfect for home, travel, or sharing the wisdom—because true skin healing deserves abundance.</p>
+                    </div>
+                  </article>
+                </section>
+
+              <div class="divider-1"></div>
+
+              
+
+              
 
               
                 
