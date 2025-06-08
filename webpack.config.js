@@ -22,7 +22,7 @@ const pagesWithSecondMenu = [
   'design-4biddenprod-nada.html',
   'dystopia-nexus.html',
   'false-flags-files.html',
-  'forg3t.html',
+  'woodsleep.html',
   'his-story.html',
   'blue-light-glasses.html',
   'indoctrination.html',
