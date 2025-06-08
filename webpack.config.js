@@ -23,7 +23,7 @@ const pagesWithSecondMenu = [
   'dystopia-nexus.html',
   'false-flags-files.html',
   'woodsleep.html',
-  'his-story.html',
+  'adjustable-resonator.html',
   'blue-light-glasses.html',
   'indoctrination.html',
   'long-sleeves.html',
