@@ -19,7 +19,7 @@ const pagesWithSecondMenu = [
   'emf-defence.html',
   'frequency-tools.html',
   'tuning-fork.html',
-  'black.tourmaline.html',
+  'black-tourmaline.html',
   'dystopia-nexus.html',
   'false-flags-files.html',
   'woodsleep.html',
