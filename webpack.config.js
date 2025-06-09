@@ -21,7 +21,7 @@ const pagesWithSecondMenu = [
   'tuning-fork.html',
   'black-tourmaline.html',
   'raw-pendant.html',
-  'false-flags-files.html',
+  'mwo.html',
   'woodsleep.html',
   'adjustable-resonator.html',
   'blue-light-glasses.html',
