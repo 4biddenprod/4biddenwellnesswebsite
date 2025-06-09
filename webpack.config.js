@@ -20,7 +20,7 @@ const pagesWithSecondMenu = [
   'frequency-tools.html',
   'tuning-fork.html',
   'black-tourmaline.html',
-  'dystopia-nexus.html',
+  'raw-pendant.html',
   'false-flags-files.html',
   'woodsleep.html',
   'adjustable-resonator.html',
