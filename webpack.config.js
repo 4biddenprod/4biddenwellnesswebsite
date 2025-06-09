@@ -35,7 +35,7 @@ const pagesWithSecondMenu = [
   'premium-backprints.html',
   'premium-frontprints.html',
   'tallow-honey.html',
-  'pullover-hoodies.html',
+  'grounding-shoes.html',
   'zipup-hoodies.html',
   'size-guide.html',
   'stolen-history.html',
