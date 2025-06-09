@@ -18,7 +18,7 @@ const pagesWithSecondMenu = [
   'grounding.html',
   'emf-defence.html',
   'frequency-tools.html',
-  'cropped-hoodies.html',
+  'tuning-fork.html',
   'design-4biddenprod-nada.html',
   'dystopia-nexus.html',
   'false-flags-files.html',
