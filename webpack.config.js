@@ -26,7 +26,7 @@ const pagesWithSecondMenu = [
   'adjustable-resonator.html',
   'blue-light-glasses.html',
   'shilajit.html',
-  'long-sleeves.html',
+  'collection-page-example.html',
   'manufactured-minds.html',
   'mens-classics.html',
   'mens-tanktops.html',
