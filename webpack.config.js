@@ -60,6 +60,7 @@ const pagesWithSingleMenu = [
   'entertainment.html',
   'faq.html',
   'home.html',
+  'quiz.html',
   'payment-policy.html',
   'privacy-policy.html',
   'projects.html',
