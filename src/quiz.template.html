@@ -62,15 +62,72 @@
 
           <div class="divider"></div>
 
-          <!-- MailerLite Universal -->
-<script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '1260530');
-</script>
-<!-- End MailerLite Universal -->
+          <!-- quiz.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Where Do I Start Quiz - 4biddenWellness</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Where Do I Start?</h1>
+    <form id="quizForm">
+      <!-- Question Template -->
+      <div class="question" data-category="detox">
+        <p>What’s your current approach to health?</p>
+        <label><input type="radio" name="q1" value="1" /> I trust mainstream medicine.</label>
+        <label><input type="radio" name="q1" value="2" /> I’m skeptical and use some holistic tools.</label>
+        <label><input type="radio" name="q1" value="3" /> I’ve rejected mainstream systems entirely.</label>
+      </div>
+
+      <!-- Repeat similar blocks for q2–q6 with categories: emf, spirit, energy, nutrition, awareness -->
+
+      <button type="submit">Get My Path</button>
+    </form>
+
+    <div id="resultContainer" class="hidden">
+      <h2>Your Path:</h2>
+      <p id="quizResult"></p>
+
+      <!-- MailerLite Form Embed Starts -->
+      <div id="mlb2-22728804" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-22728804">
+        <div class="ml-form-align-center">
+          <div class="ml-form-embedWrapper embedForm">
+            <div class="ml-form-embedBody ml-form-embedBodyHorizontal row-form">
+              <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1260530/forms/146427399209223985/subscribe" method="post" target="_blank">
+                <div class="ml-form-formContent horozintalForm">
+                  <div class="ml-form-horizontalRow">
+                    <div class="ml-input-horizontal">
+                      <div class="horizontal-fields">
+                        <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                          <input type="email" name="fields[email]" placeholder="Email" autocomplete="email" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ml-button-horizontal primary">
+                      <button type="submit">Subscribe</button>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="ml-submit" value="1">
+                <input type="hidden" name="anticsrf" value="true">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- MailerLite Form Embed Ends -->
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
 
                     <div class="divider"></div>
 
